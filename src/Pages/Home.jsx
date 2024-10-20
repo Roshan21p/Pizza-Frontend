@@ -1,7 +1,11 @@
 import IconArrowRight from "../Components/Icons/ArrowRight";
 import PizzaImage from "../assets/Images/pizza2.png"
 import CookingImage from "../assets/Images/cooking1.png"
+import OrderFood from "../assets/Images/orderFood.png"
+import Pickup from "../assets/Images/pickup.png"
+import Enjoy from "../assets/Images/enjoy.png"
 import IconPatchCheck from "../Components/Icons/IconPatchCheck";
+
 
 function Home(){
     return (
@@ -101,6 +105,66 @@ function Home(){
                             <div className="flex items-center h-full p-2 text-2xl rounded">
                                 <IconPatchCheck className="text-[#F38339] wd-10 h-10 mr-4" />
                                 <span className="font-bold title-font">Food hygeine guaranteed</span>
+
+                            </div>
+                        </div>
+
+                        <div className="px-5 py-4 mx-auto">
+                            <div className="flex justify-center py-4">
+                                <div className="inline-flex w-16 h-1 bg-yellow-600 rounded-full"> </div>
+                            </div>
+
+                            <div className="flex flex-wrap space-y-6 md:space-y-0">
+
+                                <div className="flex flex-col items-center text-center p-4 md:w-1/3">
+                                    <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 mb-5 bg-yellow-100 rounded-full">
+                                        <img src={OrderFood} alt="OrderFood" />
+                                    </div>
+
+                                    <div className="flex-grow">
+                                        <h2 className="mb-3 text-lg font-bold text-gray-900 title-font">
+                                            Order Food
+                                        </h2>
+                                        <p className="text-base leading-relaxed">
+                                            As easy 1, 2, 3, Just select your favorite pizza and place your order.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                
+                                <div className="flex flex-col items-center text-center p-4 md:w-1/3">
+                                    <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 mb-5 bg-yellow-100 rounded-full">
+                                        <img src={Pickup} alt="Pickup" />
+                                    </div>
+
+                                    <div className="flex-grow">
+                                        <h2 className="mb-3 text-lg font-bold text-gray-900 title-font">
+                                            Pickup Food
+                                        </h2>
+                                        <p className="text-base leading-relaxed">
+                                            Pickup up yuor order from the nearest store or get it delivered to your doorstep.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                
+                                <div className="flex flex-col items-center text-center p-4 md:w-1/3">
+                                    <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 mb-5 bg-yellow-100 rounded-full">
+                                        <img src={Enjoy} alt="Enjoy" />
+                                    </div>
+
+                                    <div className="flex-grow">
+                                        <h2 className="mb-3 text-lg font-bold text-gray-900 title-font">
+                                            Enjoy Food
+                                        </h2>
+                                        <p className="text-base leading-relaxed">
+                                            As soon as you get you order, enjoy the delicious pizza with your loved ones.
+                                        </p>
+                                    </div>
+
+                                </div>
 
                             </div>
                         </div>
