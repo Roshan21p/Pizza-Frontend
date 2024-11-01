@@ -167,12 +167,12 @@ function SignUpPresentation({ handleUserInput, handleFormSubmit }){
                         </div>
 
                         <div className="relative mb-4">
-                            <label htmlFor="surname" className="text-sm leading-7 text-gray-600"> Surname </label>
+                            <label htmlFor="lastName" className="text-sm leading-7 text-gray-600"> LastName </label>
 
                             <input 
                                 type="text" 
-                                id="surname" 
-                                name="surname" 
+                                id="lastName" 
+                                name="lastName" 
                                 required
                                 onChange={handleUserInput} 
                                 minLength={5}

@@ -9,6 +9,8 @@ import Layout from "../Layouts/Layout";
 
 
 function Home(){
+    //console.log(import.meta.env);
+
     return (
         <Layout>
             <div>

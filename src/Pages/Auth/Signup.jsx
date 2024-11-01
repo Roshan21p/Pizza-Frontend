@@ -1,14 +1,20 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import SignUpPresentation from "./SignupPresentation";
+import { useDispatch } from "react-redux";
+import { createAccount } from "../../Redux/Slices/AuthSlice";
+import { useNavigate } from "react-router-dom";
 
 
 // Container for the Signup page
 function Signup(){
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [signUpState, setSignUpState] = useState({
         firstName: '',
-        surname: '',
+        lastName: '',
         email: '',
         mobileNumber: '',
         password: '',
@@ -22,12 +28,11 @@ function Signup(){
         })
     }
 
-    function handleFormSubmit(e){
+   async function handleFormSubmit(e){
         e.preventDefault();  // prevent the form reloading the page
-        console.log(signUpState);
 
         // Add validations for the form input
-        if(!signUpState.email || !signUpState.mobileNumber || !signUpState.password || !signUpState.firstName || !signUpState.surname){
+        if(!signUpState.email || !signUpState.mobileNumber || !signUpState.password || !signUpState.firstName || !signUpState.lastName){
             toast.error("Missing values from the form");
            // alert('Please fill all the fields');
             return;
@@ -49,6 +54,13 @@ function Signup(){
             toast.error("Mobile number should be between 10-12 characters");
             return;
         }
+
+        const apiResponse = await dispatch(createAccount(signUpState));
+        console.log("API Response is ", apiResponse);
+        if(apiResponse.payload.data.success){
+            navigate('/auth/login');
+        }
+        
 
     }
 
