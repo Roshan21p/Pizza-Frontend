@@ -6,10 +6,19 @@ import Pickup from "../assets/Images/pickup.png"
 import Enjoy from "../assets/Images/enjoy.png"
 import IconPatchCheck from "../Components/Icons/IconPatchCheck";
 import Layout from "../Layouts/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllProducts } from "../Redux/Slices/ProductSlice";
 
 
 function Home(){
-    //console.log(import.meta.env);
+    const dispatch = useDispatch();
+    const { productsData } = useSelector((state) => state.product);
+    
+    useEffect(() => {
+        // This is called when the component mounts
+        dispatch(getAllProducts());
+    }, []);
 
     return (
         <Layout>
@@ -180,6 +189,8 @@ function Home(){
 
                     
                 </section>
+
+                {productsData.map((product) => <div key={product._id}> {product.productName} </div>)}
             </div>
         </Layout>
     );
