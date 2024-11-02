@@ -3,16 +3,36 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../Redux/Slices/ProductSlice";
 import Layout from "../../Layouts/Layout";
+import { addProductToCart, getCartDetails, removeProductFromCart } from "../../Redux/Slices/CartSlice";
 
 function ProductDetails(){
     const { productId } = useParams();
     const dispatch = useDispatch();
     const [productDetails, setProductDetails] = useState({});
+    const [isInCart, setIsInCart] = useState(false);  // Check if product is in cart
 
-    async function fetchProductDetails(){
-        const details = await dispatch(getProductDetails(productId));
-        setProductDetails(details?.payload?.data?.data);        
+   async function fetchProductDetails() {
+    const details = await dispatch(getProductDetails(productId));
+    console.log(details);
+    setProductDetails(details?.payload?.data?.data);
+    
+}
+async function handleCart() {
+    // Add product to cart
+    const response = await dispatch(addProductToCart(productId));
+    if(response?.payload?.data?.success) {
+        setIsInCart(true);
+        dispatch(getCartDetails()); // Fetch cart details and update state
     }
+}
+async function handleRemove() {
+    // Remove product from cart
+    const response = await dispatch(removeProductFromCart(productId));
+    if(response?.payload?.data?.success) {
+        setIsInCart(false);
+        dispatch(getCartDetails()); // Fetch cart details and update state
+    }
+}
 
     useEffect(() => {
        fetchProductDetails();
@@ -134,6 +154,21 @@ function ProductDetails(){
                   <span className="text-2xl font-medium text-gray-900 title-font">
                     ₹{productDetails?.price}
                   </span>
+                  {isInCart ? (
+                    <button
+                      className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
+                      onClick={() => handleRemove(productId)}
+                    >
+                      Remove from cart
+                    </button>
+                  ) : (
+                    <button
+                      className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
+                      onClick={handleCart}
+                    >
+                      Add to Cart
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
