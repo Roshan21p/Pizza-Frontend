@@ -22,7 +22,25 @@ export const getAllProducts = createAsyncThunk('/products/getAll', async () => {
         toast.error('Something went wrong');
     }
 
-})
+});
+
+export const getProductDetails = createAsyncThunk('/products/getDetails', async (id) => {
+    try {
+        const product = axiosInstance.get(`/products/${id}`);
+        toast.promise(product, {
+            loading: 'Loading the products',
+            error: 'Something went wrong cannot load products',
+            success: 'Product loaded successfully',
+        });
+        const apiResponse = await product;
+        return apiResponse;
+        
+    } catch (error) {
+        console.log(error);
+        toast.error('Something went wrong');
+    }
+
+});
 
 const productSlice = createSlice({
     name: 'product',
@@ -33,6 +51,6 @@ const productSlice = createSlice({
             state.productsData = action?.payload?.data?.data;
         })
     }
-})
+});
 
 export default productSlice.reducer;
