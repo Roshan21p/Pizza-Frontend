@@ -20,12 +20,23 @@ function Layout({ children }){
         dispatch(logout());
     }
 
+    async function fetchCartDetails() {
+        const response = await dispatch(getCartDetails());
+        console.log("cart details",response);
+        if(response?.payload?.isUnauthorized===true){
+            dispatch(logout());
+        }  
+    }
+
     useEffect(() => {
-        dispatch(getCartDetails());
-    }, []);
+        console.log(isLoggedIn);
+        
+        if(isLoggedIn)
+            fetchCartDetails();
+        }, []);
 
     return(
-        <div className="">
+        <div>
 
 
             <nav className="flex items-center justify-around h-16 text-[#6B7280] font-mono border-none shadow-md "> 

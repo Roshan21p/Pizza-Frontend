@@ -34,7 +34,7 @@ function Order(){
        const response =  await dispatch(placeOrder());
        console.log("Order response",response);
 
-       if(response?.payload?.data?.success && response?.payload?.data?.data?.items?.length !== 0){
+       if(response?.payload?.data?.success){
         toast.success("Order placed successfully");
         navigate('/order/success');
        } else {
