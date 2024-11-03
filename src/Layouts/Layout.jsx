@@ -23,14 +23,12 @@ function Layout({ children }){
     async function fetchCartDetails() {
         const response = await dispatch(getCartDetails());
         console.log("cart details",response);
-        if(response?.payload?.isUnauthorized===true){
+        if(response?.payload?.isUnauthorized){
             dispatch(logout());
         }  
     }
 
-    useEffect(() => {
-        console.log(isLoggedIn);
-        
+    useEffect(() => {        
         if(isLoggedIn)
             fetchCartDetails();
         }, []);

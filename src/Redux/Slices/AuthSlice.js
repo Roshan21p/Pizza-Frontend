@@ -20,7 +20,6 @@ export const createAccount = createAsyncThunk('/auth/createAccount', async (data
             error: 'Ohh No!, Something went wrong. Please try again.',
        });
        const apiResponse = await response;
-       console.log("Api response",apiResponse);
        return apiResponse;  
      } catch (error) {
         console.log(error);
@@ -40,7 +39,6 @@ export const login = createAsyncThunk('/auth/login', async (data) => {
             error: 'Ohh No!, Something went wrong. Please try again.',
        });
        const apiResponse = await response;
-       console.log("Api response",apiResponse);
        return apiResponse;  
      } catch (error) {
         console.log(error);
