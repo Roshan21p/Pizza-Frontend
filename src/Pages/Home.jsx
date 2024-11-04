@@ -197,13 +197,13 @@ function Home(){
                         {productsData?.map((item) => {
                             return(
                                 item.inStock && (
-                                    <div className="p-4 md:w-1/3" key={item._id} >
+                                    <div className="p-4 md:w-1/3 " key={item._id} >
                                         <Link to={`/product/${item._id}`} > 
-                                            <div className="overflow-hidden border rounded-lg border-opacity-60">
+                                            <div className="overflow-hidden border rounded-lg border-opacity-60 shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out">
                                                 <img 
                                                     src={item?.productImage}
                                                     alt="Pizza Image"
-                                                    className="object-cover object-center w-full lg:h-48 md:h-36"
+                                                    className="object-cover object-center w-full lg:h-96 md:h-36"
                                                 
                                                 />
                                                 <div className="p-6 border">

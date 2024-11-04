@@ -40,12 +40,12 @@ async function handleRemove() {
     
     return(
         <Layout>
-        <section className="overflow-hidden text-gray-600 body-font">
+        <section className="overflow-hidden text-gray-600 body-font ">
           <div className="container px-5 py-24 mx-auto">
-            <div className="flex flex-wrap mx-auto lg:w-4/5">
+            <div className="flex flex-wrap mx-auto lg:w-4/5 ">
               <img
                 alt="ecommerce"
-                className="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto"
+                className="object-cover object-center w-full rounded lg:w-1/2 lg:h-auto shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
                 src={productDetails?.productImage}
               />
               <div className="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-20 xl:py-28 lg:mt-0">
@@ -156,14 +156,14 @@ async function handleRemove() {
                   </span>
                   {isInCart ? (
                     <button
-                      className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
+                      className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600 shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
                       onClick={() => handleRemove(productId)}
                     >
                       Remove from cart
                     </button>
                   ) : (
                     <button
-                      className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
+                      className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600 shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
                       onClick={handleCart}
                     >
                       Add to Cart

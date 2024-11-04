@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false,
     role: localStorage.getItem('role') || '',
-    data: JSON.parse(localStorage.getItem('data')) || {},
+    //data: JSON.parse(localStorage.getItem('data')) || {},
+    data: localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : {},
 };
 
 export const createAccount = createAsyncThunk('/auth/createAccount', async (data) => {
-    console.log("Incoming data to the thunk", data);
      try {
         const response = axiosInstance.post('/users', data);    
         toast.promise(response, {
@@ -27,7 +27,6 @@ export const createAccount = createAsyncThunk('/auth/createAccount', async (data
 });
 
 export const login = createAsyncThunk('/auth/login', async (data) => {
-    console.log("Incoming data to the thunk", data);
      try {
         const response = axiosInstance.post('/auth/login', data);    
         toast.promise(response, {
@@ -46,7 +45,6 @@ export const login = createAsyncThunk('/auth/login', async (data) => {
 });
 
 export const logout = createAsyncThunk('/auth/logout', async () => {
-    console.log("Incoming data to the thunk");
      try {
         const response = axiosInstance.post('/auth/logout');    
         toast.promise(response, {

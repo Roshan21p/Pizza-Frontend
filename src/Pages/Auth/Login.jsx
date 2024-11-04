@@ -3,7 +3,8 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { login } from "../../Redux/Slices/AuthSlice";
 import LoginPresentation from "./LoginPresentation";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import RequireAuth from "../../Components/Auth/RequireAuth";
 
 function Login(){
 
@@ -42,9 +43,14 @@ function Login(){
         }
 
         const apiResponse = await dispatch(login(loginData));
-        console.log("API Response is ", apiResponse);
-        if(apiResponse.payload.data.success){
+        console.log("API Response of Login ", apiResponse);
+        if(apiResponse?.payload?.data?.data?.userRole === "ADMIN"){
+            navigate('/admin/addProduct');
+            return; 
+        }
+        if(apiResponse?.payload?.data?.success){
             navigate('/')
+            return;
         }
         
     }
