@@ -28,10 +28,10 @@ function Layout({ children }){
         }  
     }
 
-    useEffect(() => {        
-        if(isLoggedIn)
-            fetchCartDetails();
-        }, []);
+    // useEffect(() => {        
+    //     if(isLoggedIn)
+    //         fetchCartDetails();
+    //     }, []);
 
     return(
         <div>
@@ -46,22 +46,19 @@ function Layout({ children }){
                     <img src={Pizzalogo} alt="Pizza logo"/>
                 </div> 
 
-                <div className="hidden md:block">
+                <div className="hidden sm:block">
                     <ul className="flex gap-4">
 
                         <li className="hover:text-[#FF9110]">
-                            { ' ' }
-                            <p>Menu {' '}</p>
+                            <Link to={'/menu'}>Menu {' '}</Link>
                         </li>
 
                         <li className="hover:text-[#FF9110]">
-                            { ' ' }
-                            <p>Services {' '}</p>
+                        <Link to={'/services'}>Services {' '}</Link>
                         </li>
 
                         <li className="hover:text-[#FF9110]">
-                            { ' ' }
-                            <p>About {' '}</p>
+                        <Link to={'/about'}>About {' '}</Link>
                         </li>
 
                     </ul>

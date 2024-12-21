@@ -11,6 +11,7 @@ import OrderSuccess from './Pages/Order/OrderSuccess'
 import RequireAuth from './Components/Auth/RequireAuth'
 import AddProduct from './Pages/Admin/AddProduct'
 import About from './Pages/About'
+import Services from './Pages/Services'
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={ <Home /> } />
         <Route path='/denied' element={ <Denied /> } />
         <Route path='/about' element={ <About />} />
+        <Route path='/services' element={ <Services />} />
         <Route path='auth/signup' element={<Signup />} />
         <Route path='auth/login' element={<Login />} />
 

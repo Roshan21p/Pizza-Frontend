@@ -19,7 +19,7 @@ function Home(){
     
     useEffect(() => {
         // This is called when the component mounts
-        dispatch(getAllProducts());
+//dispatch(getAllProducts());
     }, []);
 
     return (
