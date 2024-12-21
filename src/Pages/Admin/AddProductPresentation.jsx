@@ -6,7 +6,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
         <Layout>
             <section className="py-12">
                 <div className="flex items-center justify-center px-5"> 
-                    <div className="md:w-2/6">
+                    <div className="hidden p-0 lg:w-2/6 md:w-2/6 md:pr-16 lg:pr-0 md:block">
                         <img src={Food} alt="Food" />
                     </div>
                     <div className="max-w-md md:w-4/6 mx-auto mt-8 bg-white p-4">

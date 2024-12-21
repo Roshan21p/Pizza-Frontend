@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import './App.css'
 import Home from './Pages/Home'
 import Signup from './Pages/Auth/Signup'
 import Login from './Pages/Auth/Login'
@@ -10,7 +9,9 @@ import CartDetails from './Pages/Cart/CartDetails'
 import Order from './Pages/Order/Order'
 import OrderSuccess from './Pages/Order/OrderSuccess'
 import RequireAuth from './Components/Auth/RequireAuth'
-import AddProduct from './Pages/Admin/Addproduct'
+import AddProduct from './Pages/Admin/AddProduct'
+import About from './Pages/About'
+
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home /> } />
         <Route path='/denied' element={ <Denied /> } />
+        <Route path='/about' element={ <About />} />
         <Route path='auth/signup' element={<Signup />} />
         <Route path='auth/login' element={<Login />} />
 
@@ -35,7 +37,7 @@ function App() {
         </Route>
         
 
-        <Route path='*' element={<NotFound />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
     </>
   )
