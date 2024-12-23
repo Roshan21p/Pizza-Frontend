@@ -2,23 +2,48 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../Layouts/Layout";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../Redux/Slices/ProductSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { categories } from "../Constants/categories";
 
 function Menu() {
+
     const dispatch = useDispatch();
     const { productsData } = useSelector((state) => state.product);
+    const [selectedCategory, setSelectedCategory] = useState("all");
     
     useEffect(() => {
-        // This is called when the component mounts
-        dispatch(getAllProducts());
+        (async () => {
+            await dispatch(getAllProducts());
+        })()        
+        setSelectedCategory("all")        
     }, []);
+
+    const filteredProduct = selectedCategory === "all" ? productsData : productsData?.filter((item) => item.category === selectedCategory);
+    
   return (
     <Layout>
       <div className="mx-auto min-h-screen bg-gradient-to-r from-amber-50 to-orange-300">
-        <div className="container mx-auto px-4 py-8">
+        
+      <div className="container  mx-auto px-4 py-8">
+          {/* Category buttons */}
+        <div className="flex flex-wrap justify-center space-x-4 sm:space-x-10 mb-9">
+            {categories.map((category,index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedCategory(category.value)}
+                className={`px-1 py-1 sm:px-3 sm:py-2  font-semibold rounded-md transition duration-200 ease-in-out ${
+                    selectedCategory === category.value
+                      ? "bg-orange-400 text-white"
+                      : "bg-[#FFD700] text-white hover:bg-orange-400"
+                  }`}
+              >
+                {category.name}
+              </button>
+            ))}
+        </div>
           {/* Adjust the grid layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {productsData?.map((item) => {
+            {filteredProduct?.map((item) => {
               return (
                 item?.inStock && (
                   <div

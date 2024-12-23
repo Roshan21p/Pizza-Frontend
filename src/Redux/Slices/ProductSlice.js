@@ -14,9 +14,7 @@ export const getAllProducts = createAsyncThunk('/products/getAll', async () => {
             error: 'Something went wrong cannot load products',
             success: 'Products loaded successfully',
         });
-        const apiResponse = await products;
-        console.log("apiPr", products);
-        
+        const apiResponse = await products;        
         return apiResponse;
         
     } catch (error) {
