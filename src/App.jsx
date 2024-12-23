@@ -12,6 +12,7 @@ import RequireAuth from './Components/Auth/RequireAuth'
 import AddProduct from './Pages/Admin/AddProduct'
 import About from './Pages/About'
 import Services from './Pages/Services'
+import Menu from './Pages/Menu'
 
 
 
@@ -26,6 +27,8 @@ function App() {
         <Route path='/services' element={ <Services />} />
         <Route path='auth/signup' element={<Signup />} />
         <Route path='auth/login' element={<Login />} />
+
+        <Route path='/menu' element={<Menu />} />
 
         
         <Route path='/product/:productId' element={<ProductDetails />} />

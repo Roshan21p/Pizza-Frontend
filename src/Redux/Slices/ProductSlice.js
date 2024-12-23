@@ -15,11 +15,13 @@ export const getAllProducts = createAsyncThunk('/products/getAll', async () => {
             success: 'Products loaded successfully',
         });
         const apiResponse = await products;
+        console.log("apiPr", products);
+        
         return apiResponse;
         
     } catch (error) {
         console.log(error);
-        toast.error('Something went wrong');
+        toast.error(error?.response?.data?.message);
     }
 
 });
@@ -53,7 +55,7 @@ export const addProduct = createAsyncThunk('/products/createProduct', async (dat
         return apiResponse;
     } catch (error) {
         console.log(error);
-        toast.error('Something went wrong');
+        toast.error(error?.response?.data?.message);
     }
 })
 

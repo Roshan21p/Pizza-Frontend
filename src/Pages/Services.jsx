@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import services from "../Constants/services.js";
 import Layout from "../Layouts/Layout";
 
 function Services() {
 
+  const navigate = useNavigate();
   return (
     <Layout>
       <div className="min-h-[80vh] bg-gradient-to-r from-amber-50 to-orange-300 py-10">
@@ -29,7 +31,10 @@ function Services() {
                   {service.title}
                 </h2>
                 <p className="mt-3 text-gray-600">{service.description}</p>
-                <button className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
+                <button 
+                className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+                onClick={() => navigate(service.route)}
+                >
                   {service.buttonText}
                 </button>
               </div>
