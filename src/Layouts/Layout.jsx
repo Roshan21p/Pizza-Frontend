@@ -4,7 +4,6 @@ import Footer from "../Components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../Redux/Slices/AuthSlice";
 import CartIcon from "../assets/Images/cart.svg"
-import { useEffect } from "react";
 import { getCartDetails } from "../Redux/Slices/CartSlice";
 
 

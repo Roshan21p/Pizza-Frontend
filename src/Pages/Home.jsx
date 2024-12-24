@@ -6,10 +6,13 @@ import Pickup from "../assets/Images/pickup.png"
 import Enjoy from "../assets/Images/enjoy.png"
 import IconPatchCheck from "../Components/Icons/IconPatchCheck";
 import Layout from "../Layouts/Layout";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Home(){
+
+    const navigate = useNavigate();
 
     return (
         <Layout>
@@ -37,7 +40,7 @@ function Home(){
                             Enjoy the best pizza in town with just a few click.
                         </p>
 
-                        <button className="flex items-center px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 group">
+                        <button onClick={() => navigate('/menu')} className="flex items-center px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 group">
                             Order Now
 
                             <span className="inline-block ml-3 transition-transform ease-in-out group-hover:translate-x-2">

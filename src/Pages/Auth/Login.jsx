@@ -25,9 +25,7 @@ function Login(){
 
 
     async function handleFormSubmit(e){
-        e.preventDefault();  // prevent the form reloading the page
-        console.log(loginData);
-        
+        e.preventDefault();  // prevent the form reloading the page        
 
         // Add validations for the form input
         if(!loginData.email  || !loginData.password){
@@ -35,28 +33,23 @@ function Login(){
             return;
         }
 
-        // check email
-        if(!loginData.email.includes('@') || !loginData.email.includes('.')){
-            toast.error("Invalid email address");
-            return;
-        }
 
         const apiResponse = await dispatch(login(loginData));
         console.log("API Response of Login ", apiResponse);
-        if(apiResponse?.payload?.data?.data?.userRole === "ADMIN"){
-            navigate('/admin/addProduct');
-            return; 
-        }
         if(apiResponse?.payload?.data?.success){
             navigate('/')
+            setLoginData({
+                email: '',
+                password: '',
+            })
             return;
-        }
-        
+        } 
     }
     return(
         <LoginPresentation 
         handleFormSubmit={handleFormSubmit} 
         handleUserInput={handleUserInput} 
+        loginData={loginData}
         />
     )
 

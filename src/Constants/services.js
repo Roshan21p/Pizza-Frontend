@@ -2,7 +2,7 @@ const services = [
     {
       title: "Fast Delivery",
       description: "Get your favorite pizza delivered hot and fresh to your doorstep within 30 minutes!",
-      icon: "🚚", // Emoji icon as a placeholder
+      icon: "🚚", 
       buttonText: "Order Now",
       route: "/menu",
     },
@@ -19,13 +19,6 @@ const services = [
       icon: "🎉",
       buttonText: "Contact Us",
       route: "/contact",
-    },
-    {
-      title: "Custom Orders",
-      description: "Build your own pizza with fresh ingredients and toppings of your choice.",
-      icon: "🍕",
-      buttonText: "Customize",
-      route: "/customize",
     },
 ];
 

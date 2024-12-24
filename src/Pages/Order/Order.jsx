@@ -44,7 +44,7 @@ function Order(){
 
     return (
         <Layout>
-            <section className="text-gray-600 body-font min-h-56">
+            <section className="text-gray-600 body-font min-h-56 bg-gradient-to-r from-amber-50 to-orange-300">
 
                 <div className="container px-5 py-24 mx-auto">
                     <div className="flex flex-col text-center w-full mb-12">
@@ -86,7 +86,7 @@ function Order(){
                                 name="address"
                                 placeholder="Enter your address here..."
                                 onChange={handleUserInput}
-                                className="w-full p-2 border rounded-md focus:outline-none focus:border-yellow-500 bg-white text-gray-700"
+                                className="w-full p-2 border resize-none rounded-md focus:outline-none focus:border-yellow-500 bg-white text-gray-700"
                             >
                             </textarea>
                         </div>

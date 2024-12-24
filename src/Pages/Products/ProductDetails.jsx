@@ -41,15 +41,15 @@ async function handleRemove() {
     return(
         <Layout>
         <section className="overflow-hidden text-gray-600 body-font ">
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 py-16 mx-auto min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
             <div className="flex flex-wrap mx-auto lg:w-4/5 ">
               <img
                 alt="ecommerce"
-                className="object-cover object-center w-full rounded lg:w-1/2 lg:h-auto shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
+                className="object-cover object-center bg-white w-full rounded lg:w-1/2 lg:h-[70vh] shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
                 src={productDetails?.productImage}
               />
               <div className="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-20 xl:py-28 lg:mt-0">
-                <h2 className="text-sm tracking-widest text-gray-500 title-font">
+                <h2 className="text-xl tracking-widest text-[#FF9110] font-semibold title-font">
                   {productDetails?.category}
                 </h2>
                 <h1 className="mb-1 text-3xl font-medium text-gray-900 title-font">
@@ -148,7 +148,7 @@ async function handleRemove() {
                     </a>
                   </span>
                 </div>
-                <p className="leading-relaxed">{productDetails?.description}</p>
+                <p className="leading-relaxed font-semibold ">{productDetails?.description}</p>
   
                 <div className="flex pt-5">
                   <span className="text-2xl font-medium text-gray-900 title-font">

@@ -13,6 +13,7 @@ import AddProduct from './Pages/Admin/AddProduct'
 import About from './Pages/About'
 import Services from './Pages/Services'
 import Menu from './Pages/Menu'
+import Contact from './Pages/Contact'
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='auth/login' element={<Login />} />
 
         <Route path='/menu' element={<Menu />} />
+        <Route path='/contact' element={<Contact />} />
 
         
         <Route path='/product/:productId' element={<ProductDetails />} />
