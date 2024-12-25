@@ -5,13 +5,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../Redux/Slices/AuthSlice';
 import CartIcon from '../assets/Images/cart.svg';
 import { getCartDetails } from '../Redux/Slices/CartSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { BsPersonCircle } from 'react-icons/bs';
 
 function Layout({ children }) {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { cartsData } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   async function handleLogout(e) {
     e.preventDefault();
@@ -25,56 +27,79 @@ function Layout({ children }) {
     }
   }
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     if (isLoggedIn) fetchCartDetails();
   }, []);
 
   return (
     <div>
-      <nav className="flex items-center justify-around h-16 text-[#6B7280] font-mono border-none shadow-md ">
-        <div
-          className=" flex items-center justify-center relative text-center"
-          onClick={() => navigate('/')}
-        >
-          <p>Pizza App</p>
-          <img src={Pizzalogo} alt="Pizza logo" />
-        </div>
+      <nav className="text-[#6B7280] font-mono border-none sm:h-12 shadow-md px-4">
+        <div className="flex items-center sm:justify-around justify-between mt-4">
+          {/* Logo */}
+          <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
+            <p className="mr-2 mb-2 ">Pizza App</p>
+            <img src={Pizzalogo} alt="Pizza logo" className="w-16 mt-[-16px] h-16" />
+          </div>
 
-        <div className="hidden sm:block">
-          <ul className="flex gap-4">
-            <li className="hover:text-[#FF9110]">
-              <Link to={'/menu'}>Menu </Link>
-            </li>
-
-            <li className="hover:text-[#FF9110]">
-              <Link to={'/services'}>Services </Link>
-            </li>
-
-            <li className="hover:text-[#FF9110]">
-              <Link to={'/about'}>About </Link>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <ul className="flex gap-4">
-            <li className="hover:text-[#FF9110]">
-              {isLoggedIn ? (
-                <Link onClick={handleLogout}>Logout</Link>
-              ) : (
-                <Link to={'/auth/login'}>Login</Link>
-              )}
-            </li>
+          {/* Profile & Cart */}
+          <div className="flex items-center gap-6 sm:gap-8">
+            {isLoggedIn ? (
+              <div className="relative">
+                <BsPersonCircle
+                  className="rounded-full w-10 h-10 cursor-pointer hover:text-[#FF9110]"
+                  onClick={toggleDropdown}
+                />
+                {isDropdownOpen && (
+                  <ul className="absolute top-full sm:right-[-100px] right-[-100px] sm:mt-2 mt-9 bg-gray-100 rounded-md z-[1] w-36 p-2 shadow">
+                    <li>
+                      <Link
+                        to="/user/profile"
+                        className="hover:text-[#FF9110] rounded-md hover:bg-orange-200 block px-4 py-2"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="hover:text-[#FF9110] rounded-md hover:bg-orange-200 block px-4 py-2"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <Link to="/auth/login">Login</Link>
+            )}
 
             {isLoggedIn && (
-              <Link to={'/cart'}>
-                <li>
-                  <img src={CartIcon} className="w-8 h-8 inline" />{' '}
-                  <p className="text-black inline"> {cartsData?.items?.length}</p>
-                </li>
+              <Link to="/cart">
+                <div>
+                  <img src={CartIcon} className="w-8 h-8 inline" alt="Cart" />
+                  <p className="text-black inline">{cartsData?.items?.length}</p>
+                </div>
               </Link>
             )}
-          </ul>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center sm:flex-row sm:justify-center gap-4 mt-2 sm:mt-[-35px]">
+          <Link to="/menu" className="hover:text-[#FF9110]">
+            Menu
+          </Link>
+          <Link to="/services" className="hover:text-[#FF9110]">
+            Services
+          </Link>
+          <Link to="/about" className="hover:text-[#FF9110]">
+            About
+          </Link>
         </div>
       </nav>
 

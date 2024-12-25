@@ -13,13 +13,13 @@ function Order() {
   const [details, setDetails] = useState({
     paymentMethod: 'OFFLINE',
     address: {
-        flat: '',
-        area: '',
-        landmark: '',
-        pincode: '',
-        city: '',
-        state: '',
-      },
+      flat: '',
+      area: '',
+      landmark: '',
+      pincode: '',
+      city: '',
+      state: ''
+    }
   });
 
   function handleUserInput(e) {
@@ -27,13 +27,11 @@ function Order() {
     setDetails({
       ...details,
       address: {
-        ...details.address,  // Spread the previous address properties
-        [name]: value,       // Update the specific field
-      },
+        ...details.address, // Spread the previous address properties
+        [name]: value // Update the specific field
+      }
     });
   }
-  
-  
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -42,8 +40,8 @@ function Order() {
       return;
     }
 
-    if(!details.address.pincode.match(/^[1-9][0-9]{5}$/)){
-      toast.error("Invalid pincode. Enter a 6-digit number starting from 1-9.");
+    if (!details.address.pincode.match(/^[1-9][0-9]{5}$/)) {
+      toast.error('Invalid pincode. Enter a 6-digit number starting from 1-9.');
       return;
     }
 
@@ -82,7 +80,10 @@ function Order() {
 
           <form onSubmit={handleFormSubmit}>
             <div className="relative flex-grow  w-full">
-              <label htmlFor="paymentMethod" className="text-2xl leading-7 font-semibold text-gray-600">
+              <label
+                htmlFor="paymentMethod"
+                className="text-2xl leading-7 font-semibold text-gray-600"
+              >
                 Payment Method
               </label>
               <select
@@ -97,15 +98,15 @@ function Order() {
             </div>
 
             <div className="relative flex-grow w-full my-5 ">
-                <div className='text-3xl font-semibold mb-3'>Address</div>
+              <div className="text-3xl font-semibold mb-3">Address</div>
               <div className="flex flex-col md:flex-row md:space-x-5">
-                 {/* Left Column */}
+                {/* Left Column */}
                 <div className="flex flex-col w-full md:w-1/2 space-y-2">
                   <label htmlFor="flat" className="leading-7 text-sm text-gray-600">
                     Flat, House no, Building, Company, Apartment
                   </label>
                   <textarea
-                    type='text'
+                    type="text"
                     required
                     name="flat"
                     onChange={handleUserInput}
@@ -117,8 +118,8 @@ function Order() {
                     Area, Street, Sector, Village
                   </label>
                   <textarea
-                  type='text'
-                  required
+                    type="text"
+                    required
                     name="area"
                     onChange={handleUserInput}
                     value={details.address.area}
@@ -129,8 +130,8 @@ function Order() {
                     Landmark
                   </label>
                   <textarea
-                  type='text'
-                  required
+                    type="text"
+                    required
                     name="landmark"
                     placeholder="Eg. near pizza hotel"
                     onChange={handleUserInput}
@@ -144,8 +145,8 @@ function Order() {
                     Pincode
                   </label>
                   <input
-                  type='number'
-                  required
+                    type="number"
+                    required
                     name="pincode"
                     placeholder="Enter 6-digit Pincode."
                     onChange={handleUserInput}
@@ -157,8 +158,8 @@ function Order() {
                     Town/City
                   </label>
                   <input
-                  type='text'
-                  required
+                    type="text"
+                    required
                     name="city"
                     onChange={handleUserInput}
                     value={details.address.city}
@@ -169,10 +170,10 @@ function Order() {
                     State
                   </label>
                   <input
-                  type='text'
-                  required
+                    type="text"
+                    required
                     name="state"
-                    placeholder='Enter your state'
+                    placeholder="Enter your state"
                     onChange={handleUserInput}
                     value={details.address.state}
                     className="w-full px-2 py-3 border rounded-md focus:outline-none focus:border-yellow-500 bg-white text-gray-700"
