@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import services from "../Constants/services.js";
-import Layout from "../Layouts/Layout";
+import { useNavigate } from 'react-router-dom';
+import services from '../Constants/services.js';
+import Layout from '../Layouts/Layout';
 
 function Services() {
-
   const navigate = useNavigate();
   return (
     <Layout>
@@ -27,13 +26,11 @@ function Services() {
                 {service.icon}
               </div>
               <div className="p-5">
-                <h2 className="text-xl font-semibold text-orange-600">
-                  {service.title}
-                </h2>
+                <h2 className="text-xl font-semibold text-orange-600">{service.title}</h2>
                 <p className="mt-3 text-gray-600">{service.description}</p>
-                <button 
-                className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-                onClick={() => navigate(service.route)}
+                <button
+                  className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+                  onClick={() => navigate(service.route)}
                 >
                   {service.buttonText}
                 </button>

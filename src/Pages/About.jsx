@@ -1,4 +1,4 @@
-import Layout from "../Layouts/Layout";
+import Layout from '../Layouts/Layout';
 
 function About() {
   return (
@@ -20,7 +20,10 @@ function About() {
               {/* Address Details */}
               <div className="flex flex-col">
                 <h3 className="font-semibold text-lg">ADDRESS</h3>
-                <p>My Pizza app store, Mumbai,<br /> near my home</p>
+                <p>
+                  My Pizza app store, Mumbai,
+                  <br /> near my home
+                </p>
               </div>
 
               {/* Contact Section */}
@@ -38,12 +41,13 @@ function About() {
         <div className="flex flex-col m-5 md:px-8 md:w-1/3 text-black text-left">
           <h1 className="text-4xl">About</h1>
           <p className="md:mt-8 text-justify">
-            At Pizza App, we are passionate about crafting exceptional pizzas that bring joy to every bite.
-            Our journey began with a commitment to using the freshest, high-quality ingredients, combined
-            with authentic recipes passed down through generations. Whether you're craving a classic Margherita
-            or an adventurous specialty pizza, each creation is made with care and attention to detail. Join us
-            in celebrating the art of pizza-making and indulge in flavors that will leave you wanting more.
-            Welcome to the world of Pizza App, where every pizza tells a delicious story.
+            At Pizza App, we are passionate about crafting exceptional pizzas that bring joy to
+            every bite. Our journey began with a commitment to using the freshest, high-quality
+            ingredients, combined with authentic recipes passed down through generations. Whether
+            you're craving a classic Margherita or an adventurous specialty pizza, each creation is
+            made with care and attention to detail. Join us in celebrating the art of pizza-making
+            and indulge in flavors that will leave you wanting more. Welcome to the world of Pizza
+            App, where every pizza tells a delicious story.
           </p>
         </div>
       </div>
