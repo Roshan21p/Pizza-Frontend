@@ -64,6 +64,15 @@ export const logout = createAsyncThunk('/auth/logout', async () => {
   }
 });
 
+export const getUserData = createAsyncThunk('/user/details', async () => {
+  try {
+    const response = await axiosInstance.get('/users/getProfile');
+    return response.data;
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error?.message)
+  }
+})
+
 const AuthSlice = createSlice({
   name: 'auth',
   initialState,
@@ -75,11 +84,11 @@ const AuthSlice = createSlice({
         console.log(action);
 
         if (!action?.payload?.data?.data?.userData) return;
-        state.isLoggedIn = true;
+        state.isLoggedIn = action?.payload?.data?.success;
         state.role = action?.payload?.data?.data?.userRole;
         state.data = action?.payload?.data?.data?.userData;
 
-        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('isLoggedIn', action?.payload?.data?.success);
         localStorage.setItem('role', action?.payload?.data?.data?.userRole);
         localStorage.setItem('data', JSON.stringify(action?.payload?.data?.data?.userData));
       })
@@ -92,7 +101,20 @@ const AuthSlice = createSlice({
         state.isLoggedIn = false;
         state.role = '';
         state.data = {};
-      });
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
+        console.log(action);
+        
+
+        if (!action?.payload?.data?.userData) return;
+        state.isLoggedIn = action?.payload?.success;
+        state.role = action?.payload?.data?.role;
+        state.data = action?.payload?.data?.userData;
+
+        localStorage.setItem('isLoggedIn', action?.payload?.success);
+        localStorage.setItem('role', action?.payload?.data?.userData?.role);
+        localStorage.setItem('data', JSON.stringify(action?.payload?.data?.userData));
+      })
   }
 });
 

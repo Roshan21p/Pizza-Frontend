@@ -15,6 +15,7 @@ import Services from './Pages/Services';
 import Menu from './Pages/Menu';
 import Contact from './Pages/Contact';
 import Profile from './Pages/User/Profile';
+import EditProfile from './Pages/User/EditProfile';
 
 function App() {
   return (
@@ -24,9 +25,11 @@ function App() {
         <Route path="/denied" element={<Denied />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-        <Route path="auth/signup" element={<Signup />} />
-        <Route path="auth/login" element={<Login />} />
-        <Route path="user/profile" element={<Profile />} />
+        <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/user/profile" element={<Profile />} />
+        <Route path="/user/edit-profile" element={<EditProfile />} />
+
 
         <Route path="/menu" element={<Menu />} />
         <Route path="/contact" element={<Contact />} />

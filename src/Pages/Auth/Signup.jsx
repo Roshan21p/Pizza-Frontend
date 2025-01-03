@@ -48,6 +48,11 @@ function Signup() {
       return;
     }
 
+    if (signUpState.lastName.length < 5 || signUpState.lastName.length > 20) {
+      toast.error('lastt name should be atleast 5 characters long and maximum 20 characters long ');
+      return;
+    }
+
     // email validation using regex
     if (!isEmail(signUpState.email)) {
       toast.error('Invalid email id');

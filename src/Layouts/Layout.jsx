@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Pizzalogo from '../assets/Images/pizza1.png';
 import Footer from '../Components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../Redux/Slices/AuthSlice';
 import CartIcon from '../assets/Images/cart.svg';
 import { getCartDetails } from '../Redux/Slices/CartSlice';
 import { useEffect, useState } from 'react';
@@ -33,7 +32,7 @@ function Layout({ children }) {
   };
 
   useEffect(() => {
-    if (isLoggedIn) fetchCartDetails();
+    if(isLoggedIn) fetchCartDetails();
   }, []);
 
   return (
