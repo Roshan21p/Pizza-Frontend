@@ -11,8 +11,8 @@ export const addProductToCart = createAsyncThunk('/cart/addProduct', async (prod
     const response = axiosInstance.post(`/carts/add/${productId}`);
     toast.promise(response, {
       loading: 'Adding product to cart',
-      error: 'Something went wrong cannot add product to cart',
-      success: 'Product added successfully'
+      success: 'Product added successfully',
+      error: 'Something went wrong cannot add product to cart'
     });
     const apiResponse = await response;
     return apiResponse;

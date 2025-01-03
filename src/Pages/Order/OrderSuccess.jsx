@@ -13,7 +13,7 @@ function OrderSuccess() {
           height={400}
           src={OrderSuccessImage}
           alt="OrderSuccessImage"
-          className="border rounded-lg"
+          className="border rounded-lg w-[20rem] sm:w-{24rem]"
         />
 
         <p className="text-lg font-semibold">Your order has been placed successfully</p>

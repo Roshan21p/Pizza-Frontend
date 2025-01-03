@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../Layouts/Layout';
 import toast from 'react-hot-toast';
 import { isEmail } from '../Helpers/regexMatcher';
+import axiosInstance from '../Helpers/axiosinstance';
 
 function Contact() {
   const [input, setInput] = useState({
@@ -18,7 +19,7 @@ function Contact() {
     });
   }
 
-  function onFormSubmit(e) {
+  async function onFormSubmit(e) {
     e.preventDefault();
 
     if (!input.name || !input.email || !input.message) {
@@ -29,6 +30,29 @@ function Contact() {
     if (!isEmail(input.email)) {
       toast.error('Invalid email id');
       return;
+    }
+
+    try {
+      const response = axiosInstance.post('/contact-us', input);
+      toast.promise(response, {
+        loading: 'Submitting your message...',
+        success: (resolvedPromise) => {
+          return resolvedPromise?.data?.message;
+        },
+        error: 'Failed to submit the form'
+      });
+      const apiResponse = await response;
+      if (apiResponse?.data?.success) {
+        setInput({
+          name: '',
+          email: '',
+          message: ''
+        });
+      }
+      return;
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message || error?.message);
     }
   }
   return (
@@ -86,7 +110,7 @@ function Contact() {
           {/* Contact Details */}
           <div className="mt-10 text-center">
             <p className="text-gray-700">
-              📧 Email: <span className="text-orange-600">support@pizzaapp.com</span>
+              📧 Email: <span className="text-orange-600">support@pizzify.com</span>
             </p>
             <p className="text-gray-700">
               📞 Phone: <span className="text-orange-600">123-456-7890</span>

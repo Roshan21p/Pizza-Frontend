@@ -6,7 +6,7 @@ const initialState = {
   isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false,
   role: localStorage.getItem('role') || '',
   //data: JSON.parse(localStorage.getItem('data')) || {},
-  data: localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : {}
+  data: localStorage.getItem('data') != 'undefined' ? JSON.parse(localStorage.getItem('data')) : {}
 };
 
 export const createAccount = createAsyncThunk('/auth/createAccount', async (data) => {
@@ -53,7 +53,6 @@ export const logout = createAsyncThunk('/auth/logout', async () => {
       success: (resolvedPromise) => {
         return resolvedPromise?.data?.message;
       },
-
       loading: 'Logging out...',
       error: 'Ohh No!, Something went wrong. Please try again.'
     });
@@ -73,6 +72,9 @@ const AuthSlice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         // reducer which will execute when the login thunk is fulfilled
+        console.log(action);
+
+        if (!action?.payload?.data?.data?.userData) return;
         state.isLoggedIn = true;
         state.role = action?.payload?.data?.data?.userRole;
         state.data = action?.payload?.data?.data?.userData;

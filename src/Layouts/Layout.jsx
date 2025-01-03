@@ -18,6 +18,7 @@ function Layout({ children }) {
   async function handleLogout(e) {
     e.preventDefault();
     dispatch(logout());
+    navigate('/');
   }
 
   async function fetchCartDetails() {
@@ -37,11 +38,11 @@ function Layout({ children }) {
 
   return (
     <div>
-      <nav className="text-[#6B7280] font-mono border-none sm:h-12 shadow-md px-4">
+      <nav className="text-[#6B7280] font-mono border-none sm:h-12 shadow-md w-full px-4">
         <div className="flex items-center sm:justify-around justify-between mt-4">
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
-            <p className="mr-2 mb-2 ">Pizza App</p>
+            <p className="mr-2 mb-2 text-[#FF9110] text-2xl sm:text-3xl">Pizzify</p>
             <img src={Pizzalogo} alt="Pizza logo" className="w-16 mt-[-16px] h-16" />
           </div>
 
@@ -54,11 +55,11 @@ function Layout({ children }) {
                   onClick={toggleDropdown}
                 />
                 {isDropdownOpen && (
-                  <ul className="absolute top-full sm:right-[-100px] right-[-100px] sm:mt-2 mt-9 bg-gray-100 rounded-md z-[1] w-36 p-2 shadow">
+                  <ul className="absolute top-full sm:right-[-100px] right-[-100px] sm:mt-2 mt-9 bg-tran rounded-md z-[1] w-36 p-2 shadow">
                     <li>
                       <Link
                         to="/user/profile"
-                        className="hover:text-[#FF9110] rounded-md hover:bg-orange-200 block px-4 py-2"
+                        className="hover:text-[#FF9110] rounded-md font-semibold hover:bg-orange-200 block px-4 py-2"
                         onClick={() => setIsDropdownOpen(false)}
                       >
                         Profile
@@ -66,7 +67,7 @@ function Layout({ children }) {
                     </li>
                     <li>
                       <Link
-                        className="hover:text-[#FF9110] rounded-md hover:bg-orange-200 block px-4 py-2"
+                        className="hover:text-[#FF9110] rounded-md font-semibold hover:bg-orange-200 block px-4 py-2"
                         onClick={handleLogout}
                       >
                         Logout
@@ -76,7 +77,9 @@ function Layout({ children }) {
                 )}
               </div>
             ) : (
-              <Link to="/auth/login">Login</Link>
+              <Link to="/auth/login" className="hover:text-[#FF9110] ">
+                Login
+              </Link>
             )}
 
             {isLoggedIn && (

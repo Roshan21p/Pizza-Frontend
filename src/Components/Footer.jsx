@@ -5,15 +5,15 @@ function Footer() {
     <footer className="text-gray-600 body-font min-h-[10vh] ">
       <div className="bg-gradient-to-r from-amber-50 to-orange-300">
         <div className="container flex flex-col flex-wrap px-5 py-10 mx-auto sm:flex-row">
-          <p className="text-sm text-center text-gray-500 sm:text-left">
-            &copy; {year} Pizza App
+          <p className="text-xl text-center text-gray-500 sm:text-left">
+            &copy; {year} Pizzify. All right reserved.
             <a
-              href="https://twitter.com/knyttneve"
+              href="https://www.linkedin.com/in/roshan-prajapati-5813291b3"
               rel="noopener noreferrer"
               className="ml-1 text-gray-600"
               target="_blank"
             >
-              @pizza-apps
+              @pizzify
             </a>
           </p>
           <span className="inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start">
