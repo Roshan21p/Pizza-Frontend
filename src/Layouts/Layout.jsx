@@ -6,6 +6,7 @@ import CartIcon from '../assets/Images/cart.svg';
 import { getCartDetails } from '../Redux/Slices/CartSlice';
 import { useEffect, useState } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
+import { logout } from '../Redux/Slices/AuthSlice';
 
 function Layout({ children }) {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -16,7 +17,7 @@ function Layout({ children }) {
 
   async function handleLogout(e) {
     e.preventDefault();
-    dispatch(logout());
+    await dispatch(logout());
     navigate('/');
   }
 
@@ -24,6 +25,7 @@ function Layout({ children }) {
     const response = await dispatch(getCartDetails());
     if (response?.payload?.isUnauthorized) {
       dispatch(logout());
+      navigate('/');
     }
   }
 
@@ -32,7 +34,7 @@ function Layout({ children }) {
   };
 
   useEffect(() => {
-    if(isLoggedIn) fetchCartDetails();
+    if (isLoggedIn) fetchCartDetails();
   }, []);
 
   return (

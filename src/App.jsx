@@ -30,7 +30,6 @@ function App() {
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />
 
-
         <Route path="/menu" element={<Menu />} />
         <Route path="/contact" element={<Contact />} />
 

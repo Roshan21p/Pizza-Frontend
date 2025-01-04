@@ -169,7 +169,7 @@ function Order() {
                   <label htmlFor="state" className="leading-7 text-sm text-gray-600">
                     State
                   </label>
-                  <input
+                  <select
                     type="text"
                     required
                     name="state"
@@ -177,7 +177,15 @@ function Order() {
                     onChange={handleUserInput}
                     value={details.address.state}
                     className="w-full px-2 py-3 border rounded-md focus:outline-none focus:border-yellow-500 bg-white text-gray-700"
-                  />
+                  >
+                     <option value="">Select State</option>
+                        {states.map((state, index) => (
+                        <option key={index} value={state}>
+                        {state}
+                        </option>
+                    ))}
+                  </select>
+                                  
                 </div>
               </div>
             </div>

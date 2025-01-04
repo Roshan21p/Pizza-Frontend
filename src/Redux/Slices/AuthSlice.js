@@ -64,14 +64,32 @@ export const logout = createAsyncThunk('/auth/logout', async () => {
   }
 });
 
+export const updateProfile = createAsyncThunk('/user/update-profile', async (data) => {
+  
+  try {
+    const response = axiosInstance.put('/users/me', data);
+    toast.promise(response, {
+      success: (resolvedPromise) => {
+        return resolvedPromise?.data?.message;
+      },
+      loading: 'Wait ! Profile update in progess...',
+      error: 'Ohh No!, Something went wrong. Please try again.'
+    });
+    const apiResponse = await response;
+    return apiResponse;
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error?.message);
+  }
+});
+
 export const getUserData = createAsyncThunk('/user/details', async () => {
   try {
     const response = await axiosInstance.get('/users/getProfile');
     return response.data;
   } catch (error) {
-    toast.error(error?.response?.data?.message || error?.message)
+    toast.error(error?.response?.data?.message || error?.message);
   }
-})
+});
 
 const AuthSlice = createSlice({
   name: 'auth',
@@ -94,17 +112,14 @@ const AuthSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         // reducer which will execute when the logout thunk is fulfilled
-        localStorage.setItem('isLoggedIn', false);
-        localStorage.setItem('role', '');
-        localStorage.setItem('data', JSON.stringify({}));
-
         state.isLoggedIn = false;
         state.role = '';
         state.data = {};
+
+        localStorage.clear();
       })
       .addCase(getUserData.fulfilled, (state, action) => {
         console.log(action);
-        
 
         if (!action?.payload?.data?.userData) return;
         state.isLoggedIn = action?.payload?.success;
@@ -114,7 +129,7 @@ const AuthSlice = createSlice({
         localStorage.setItem('isLoggedIn', action?.payload?.success);
         localStorage.setItem('role', action?.payload?.data?.userData?.role);
         localStorage.setItem('data', JSON.stringify(action?.payload?.data?.userData));
-      })
+      });
   }
 });
 
