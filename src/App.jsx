@@ -9,13 +9,14 @@ import CartDetails from './Pages/Cart/CartDetails';
 import Order from './Pages/Order/Order';
 import OrderSuccess from './Pages/Order/OrderSuccess';
 import RequireAuth from './Components/Auth/RequireAuth';
-import AddProduct from './Pages/Admin/AddProduct';
 import About from './Pages/About';
 import Services from './Pages/Services';
 import Menu from './Pages/Menu';
 import Contact from './Pages/Contact';
 import Profile from './Pages/User/Profile';
 import EditProfile from './Pages/User/EditProfile';
+import AddProduct from './Pages/Admin/AddProduct';
+import ForgotPassword from './Pages/Password/ForgotPassword';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />
 
+        <Route path="/auth/forgotpassword" element={<ForgotPassword />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/contact" element={<Contact />} />
 

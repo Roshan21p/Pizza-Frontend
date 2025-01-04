@@ -65,15 +65,14 @@ export const logout = createAsyncThunk('/auth/logout', async () => {
 });
 
 export const updateProfile = createAsyncThunk('/user/update-profile', async (data) => {
-  
   try {
     const response = axiosInstance.put('/users/me', data);
     toast.promise(response, {
       success: (resolvedPromise) => {
         return resolvedPromise?.data?.message;
       },
-      loading: 'Wait ! Profile update in progess...',
-      error: 'Ohh No!, Something went wrong. Please try again.'
+      loading: 'Hold back tight! We are updating your profile...',
+      error: 'Ohh No! Failed to update profile. Please try again.'
     });
     const apiResponse = await response;
     return apiResponse;
@@ -86,6 +85,23 @@ export const getUserData = createAsyncThunk('/user/details', async () => {
   try {
     const response = await axiosInstance.get('/users/getProfile');
     return response.data;
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error?.message);
+  }
+});
+
+export const forgotPassword = createAsyncThunk('/auth/forgotPassword', async (email) => {
+  try {
+    const response = axiosInstance.post('/auth/forgot_Password', {email});
+    toast.promise(response, {
+      success: (resolvedPromise) => {
+        return resolvedPromise?.data?.message;
+      },
+      loading: 'Hold back tight! We are verifying your email...',
+      error: 'Ohh No! Failed to send verification email. Please try again.'
+    });
+    const apiResponse = await response;
+    return apiResponse;
   } catch (error) {
     toast.error(error?.response?.data?.message || error?.message);
   }
