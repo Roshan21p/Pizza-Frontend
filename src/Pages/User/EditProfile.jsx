@@ -46,8 +46,8 @@ function EditProfile() {
 
     // if the image exists then getting the url link of it
     if (uploadImage) {
-        console.log("uploadImage",uploadImage);
-        
+      console.log('uploadImage', uploadImage);
+
       const fileReader = new FileReader();
       fileReader.readAsDataURL(uploadImage);
 
@@ -63,17 +63,16 @@ function EditProfile() {
 
   function handleInputChange(e) {
     const { name, value } = e.target;
-  
-        setData((prevState) => ({
-            ...prevState,
-            address: {
-                ...prevState.address,
-                [name]: value
-            },
-            [name]: value                       
-        }));
-    }
-  
+
+    setData((prevState) => ({
+      ...prevState,
+      address: {
+        ...prevState.address,
+        [name]: value
+      },
+      [name]: value
+    }));
+  }
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -102,27 +101,32 @@ function EditProfile() {
       return;
     }
 
-    if (!data.address.flat || !data.address.area || !data.address.landmark || !data.address.city || !data.address.state) {
-        toast.error('Please fill all the address fields');
-        return
+    if (
+      !data.address.flat ||
+      !data.address.area ||
+      !data.address.landmark ||
+      !data.address.city ||
+      !data.address.state
+    ) {
+      toast.error('Please fill all the address fields');
+      return;
     }
 
     const formData = new FormData();
     formData.append('firstName', data?.firstName);
     formData.append('lastName', data?.lastName);
     formData.append('mobileNumber', data?.mobileNumber);
-    if(data?.avatar){
-        formData.append('avatar', data?.avatar);
+    if (data?.avatar) {
+      formData.append('avatar', data?.avatar);
     }
-   // Flatten the address object and append each field individually
-    Object.keys(data.address).forEach(key => {
-    // Append each address property with a name like 'address[flat]', 'address[area]', etc.
-    formData.append(`address[${key}]`, data.address[key]);
-  });
-    
+    // Flatten the address object and append each field individually
+    Object.keys(data.address).forEach((key) => {
+      // Append each address property with a name like 'address[flat]', 'address[area]', etc.
+      formData.append(`address[${key}]`, data.address[key]);
+    });
 
     const res = await dispatch(updateProfile(formData));
-console.log("res",res);
+    console.log('res', res);
 
     const apiResponse = await dispatch(getUserData());
     if (apiResponse?.payload?.success) {

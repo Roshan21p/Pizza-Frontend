@@ -17,6 +17,7 @@ import Profile from './Pages/User/Profile';
 import EditProfile from './Pages/User/EditProfile';
 import AddProduct from './Pages/Admin/AddProduct';
 import ForgotPassword from './Pages/Password/ForgotPassword';
+import ResetPasssword from './Pages/Password/ResetPassword';
 
 function App() {
   return (
@@ -31,12 +32,14 @@ function App() {
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/edit-profile" element={<EditProfile />} />
 
-        <Route path="/auth/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="/auth/reset-password/:resetToken" element={<ResetPasssword />} />
+
         <Route path="/menu" element={<Menu />} />
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/product/:productId" element={<ProductDetails />} />
-        <Route path="/admin/addProduct" element={<AddProduct />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
 
         <Route element={<RequireAuth />}>
           <Route path="/order" element={<Order />} />

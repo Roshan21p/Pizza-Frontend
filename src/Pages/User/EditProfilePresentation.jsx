@@ -1,15 +1,17 @@
 import { BsPencil, BsPersonCircle } from 'react-icons/bs';
 import Layout from '../../Layouts/Layout';
-import {states} from '../../Constants/states'
+import { states } from '../../Constants/states';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 function EditProfilePresentation({ handleInputChange, handleImageUpload, onFormSubmit, data }) {
-  
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-r from-amber-50 to-orange-300 px-4 py-6 md:px-8">
-        <form onSubmit={onFormSubmit} className="flex flex-col justify-center rounded-lg gap-4 my-10 shadow-lg max-w-[56rem] mx-auto p-6">
+        <form
+          onSubmit={onFormSubmit}
+          className="flex flex-col justify-center rounded-lg gap-4 my-10 shadow-lg max-w-[56rem] mx-auto p-6"
+        >
           {/* Profile Header */}
           <h1 className="font-bold text-center text-[#6B7280] hover:text-[#FF9110] text-2xl md:text-3xl">
             Edit Profile
@@ -117,7 +119,7 @@ function EditProfilePresentation({ handleInputChange, handleImageUpload, onFormS
                   type="text"
                   name="flat"
                   onChange={handleInputChange}
-                  value={data?.address?. flat || ''}
+                  value={data?.address?.flat || ''}
                   className="w-full px-2 border-2 border-gray-500 py-1 mt-1 resize-none rounded-md focus:outline-none focus:border-yellow-500 bg-transparent  text-gray-700"
                 />
 
@@ -178,7 +180,7 @@ function EditProfilePresentation({ handleInputChange, handleImageUpload, onFormS
                   id="state"
                   className="w-full border-2 border-gray-500 px-2 py-1  md:py-4 bg-transparent rounded-md focus:outline-none focus:border-yellow-500 text-gray-700"
                   onChange={handleInputChange}
-                  value={data?.address?.state || ''} 
+                  value={data?.address?.state || ''}
                 >
                   <option value="">Select State</option>
                   {states.map((state, index) => (
@@ -192,16 +194,15 @@ function EditProfilePresentation({ handleInputChange, handleImageUpload, onFormS
           </div>
 
           <Link to={'/user/profile'}>
-  <p className="underline cursor-pointer flex items-center justify-center w-full gap-2 text-green-700 hover:text-green-500">
-    <AiOutlineArrowLeft className="text-green-700 hover:text-green-500" /> 
-    Back to Profile
-  </p>
-</Link>
-
+            <p className="underline cursor-pointer flex items-center justify-center w-full gap-2 text-green-700 hover:text-green-500">
+              <AiOutlineArrowLeft className="text-green-700 hover:text-green-500" />
+              Back to Profile
+            </p>
+          </Link>
 
           {/* Buttons */}
           <button className="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded text-lg">
-          Update Profile
+            Update Profile
           </button>
         </form>
       </div>

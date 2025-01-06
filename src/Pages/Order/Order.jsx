@@ -178,14 +178,13 @@ function Order() {
                     value={details.address.state}
                     className="w-full px-2 py-3 border rounded-md focus:outline-none focus:border-yellow-500 bg-white text-gray-700"
                   >
-                     <option value="">Select State</option>
-                        {states.map((state, index) => (
-                        <option key={index} value={state}>
+                    <option value="">Select State</option>
+                    {states.map((state, index) => (
+                      <option key={index} value={state}>
                         {state}
-                        </option>
+                      </option>
                     ))}
                   </select>
-                                  
                 </div>
               </div>
             </div>

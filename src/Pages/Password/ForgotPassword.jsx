@@ -1,38 +1,37 @@
-import { useDispatch } from "react-redux";
-import Layout from "../../Layouts/Layout";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { isEmail } from "../../Helpers/regexMatcher";
-import { forgotPassword } from "../../Redux/Slices/AuthSlice";
-import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import Layout from '../../Layouts/Layout';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { isEmail } from '../../Helpers/regexMatcher';
+import { forgotPassword } from '../../Redux/Slices/AuthSlice';
+import { Link } from 'react-router-dom';
 
 function ForgotPassword() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
-    console.log(email);
-    
+  console.log(email);
 
-    async function onFormSubmit(e){
-        e.preventDefault();
+  async function onFormSubmit(e) {
+    e.preventDefault();
 
-        if(!email){
-            toast.error("Email field is required");
-            return;
-        }
-
-        if(!isEmail(email)){
-            toast.error("Invalid email id");
-            return;
-        }
-
-        await dispatch(forgotPassword(email));
-        setEmail('');
+    if (!email) {
+      toast.error('Email field is required');
+      return;
     }
+
+    if (!isEmail(email)) {
+      toast.error('Invalid email id');
+      return;
+    }
+
+    await dispatch(forgotPassword(email));
+    setEmail('');
+  }
   return (
     <Layout>
-            {/* Forgot password container */}
+      {/* Forgot password container */}
       <div className="flex items-center justify-center  min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300 px-10 py-6 mx-auto">
         {/* Forgot password card*/}
         <form
@@ -40,7 +39,7 @@ function ForgotPassword() {
           onSubmit={onFormSubmit}
           className="flex flex-col justify-center gap-6 rounded-lg p-4 bg-gray-100 w-[20rem] sm:w-[24rem] h-[24rem]"
         >
-          <h1 className="text-center text-2xl font-bold text-yellow-500">Forgot Password</h1>
+          <h1 className="text-center text-2xl font-bold text-[#FF9110]">Forgot Password</h1>
 
           <p className="text-gray-500">
             Enter your registered email, we will send you a verification link on your registered
@@ -79,4 +78,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword
+export default ForgotPassword;

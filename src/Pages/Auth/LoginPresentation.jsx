@@ -11,7 +11,10 @@ function LoginPresentation({ handleFormSubmit, handleUserInput, loginData }) {
             <img src={loginImage} alt="loginImage" />
           </div>
 
-          <form noValidate className="flex flex-col w-full p-8 mt-10 bg-gray-100 rounded-lg lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0 ">
+          <form
+            noValidate
+            className="flex flex-col w-full p-8 mt-10 bg-gray-100 rounded-lg lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0 "
+          >
             <h2 className="mb-5 text-lg font-medium text-gray-900 title-font"> Login </h2>
 
             <div className="relative mb-4">
@@ -55,9 +58,11 @@ function LoginPresentation({ handleFormSubmit, handleUserInput, loginData }) {
               Sign In
             </button>
 
-            <Link to={'/auth/forgotpassword'}>
-            <p className="mt-3 text-sm text-center text-yellow-500 underline cursor-pointer">Forgot Password</p>
-          </Link>
+            <Link to={'/auth/forgot-password'}>
+              <p className="mt-3 text-sm text-center text-yellow-500 underline cursor-pointer">
+                Forgot Password
+              </p>
+            </Link>
 
             <p className="mt-3 text-xs text-center text-gray-500">
               {' '}

@@ -38,7 +38,7 @@ export const getProductDetails = createAsyncThunk('/products/getDetails', async 
   }
 });
 
-export const addProduct = createAsyncThunk('/products/createProduct', async (data) => {
+export const addNewProduct = createAsyncThunk('/products/createProduct', async (data) => {
   try {
     const response = axiosInstance.post('/products', data);
     toast.promise(response, {

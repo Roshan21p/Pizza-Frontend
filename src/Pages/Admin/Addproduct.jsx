@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AddProductPresentation from './AddProductPresentation';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../Redux/Slices/ProductSlice';
+import { addNewProduct } from '../../Redux/Slices/ProductSlice';
 
 function AddProduct() {
   const dispatch = useDispatch();
@@ -56,7 +56,7 @@ function AddProduct() {
     formData.append('category', productDetails.category);
     formData.append('productImage', productDetails.productImage); // Append the image file
 
-    const apiResponse = await dispatch(addProduct(formData));
+    const apiResponse = await dispatch(addNewProduct(formData));
     console.log('API Response of Product ', apiResponse);
   }
 

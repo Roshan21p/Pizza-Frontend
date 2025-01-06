@@ -92,13 +92,32 @@ export const getUserData = createAsyncThunk('/user/details', async () => {
 
 export const forgotPassword = createAsyncThunk('/auth/forgotPassword', async (email) => {
   try {
-    const response = axiosInstance.post('/auth/forgot_Password', {email});
+    const response = axiosInstance.post('/auth/forgot-password', { email });
     toast.promise(response, {
       success: (resolvedPromise) => {
         return resolvedPromise?.data?.message;
       },
       loading: 'Hold back tight! We are verifying your email...',
       error: 'Ohh No! Failed to send verification email. Please try again.'
+    });
+    const apiResponse = await response;
+    return apiResponse;
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error?.message);
+  }
+});
+
+export const resetPassword = createAsyncThunk('/auth/resetPassword', async (data) => {
+  try {
+    const response = axiosInstance.post(`/auth/reset-password/${data.resetToken}`, {
+      password: data.password
+    });
+    toast.promise(response, {
+      success: (resolvedPromise) => {
+        return resolvedPromise?.data?.message;
+      },
+      loading: 'Hold back tight! We are resetting the password...',
+      error: 'Ohh No! Failed to reset password. Please try again.'
     });
     const apiResponse = await response;
     return apiResponse;
