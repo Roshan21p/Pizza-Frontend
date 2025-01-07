@@ -57,6 +57,26 @@ export const getCartDetails = createAsyncThunk('/cart/getDetails', async () => {
     toast.error(error?.response?.data?.message || error?.message);
   }
 });
+
+export const removeAllProductFromCart = createAsyncThunk('/cart/clearCart', async (itemId) => {
+  try {
+    const response = axiosInstance.delete(`/carts/item/${itemId}`);
+    toast.promise(response, {
+      loading: 'Removing item from cart',
+      success: (resolvedPromise) => {
+        return resolvedPromise?.data?.message;
+      },
+      error: 'Something went wrong cannot remove item from cart'
+    });
+    const apiResponse = await response;
+    return apiResponse;
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data?.message || error?.message);
+  }
+});
+
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,

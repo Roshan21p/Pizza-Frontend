@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProductDetails } from '../../Redux/Slices/ProductSlice';
 import Layout from '../../Layouts/Layout';
 import {
   addProductToCart,
   getCartDetails,
-  removeProductFromCart
+  removeAllProductFromCart,
 } from '../../Redux/Slices/CartSlice';
 
 function ProductDetails() {
   const { productId } = useParams();
+  const  items  =  useSelector((state) => state?.cart?.cartsData?.items)
   const dispatch = useDispatch();
   const [productDetails, setProductDetails] = useState({});
   const [isInCart, setIsInCart] = useState(false); // Check if product is in cart
-
+  
   async function fetchProductDetails() {
     const details = await dispatch(getProductDetails(productId));
     console.log(details);
@@ -28,9 +29,12 @@ function ProductDetails() {
       dispatch(getCartDetails()); // Fetch cart details and update state
     }
   }
-  async function handleRemove() {
+  async function handleRemoveAll() {
+
+    const itemsToRemove = items?.filter(item => item.product._id === productId).map(item => item._id);    
+
     // Remove product from cart
-    const response = await dispatch(removeProductFromCart(productId));
+    const response = await dispatch(removeAllProductFromCart(itemsToRemove));
     if (response?.payload?.data?.success) {
       setIsInCart(false);
       dispatch(getCartDetails()); // Fetch cart details and update state
@@ -38,8 +42,11 @@ function ProductDetails() {
   }
 
   useEffect(() => {
-    fetchProductDetails();
-  }, [productId]);
+       fetchProductDetails();
+      // Check if the product is already in the cart
+      const productInCart = items?.find(item => item.product._id === productId);      
+      setIsInCart(!!productInCart);
+  }, [items, productId]);
 
   return (
     <Layout>
@@ -160,7 +167,7 @@ function ProductDetails() {
                 {isInCart ? (
                   <button
                     className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600 shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
-                    onClick={() => handleRemove(productId)}
+                    onClick={() => handleRemoveAll(productId)}
                   >
                     Remove from cart
                   </button>

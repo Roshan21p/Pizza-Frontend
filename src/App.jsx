@@ -24,24 +24,26 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/denied" element={<Denied />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/auth/signup" element={<Signup />} />
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/user/profile" element={<Profile />} />
-        <Route path="/user/edit-profile" element={<EditProfile />} />
-
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/denied" element={<Denied />} />
+        <Route path="/product/:productId" element={<ProductDetails />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
         <Route path="/auth/reset-password/:resetToken" element={<ResetPasssword />} />
 
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/contact" element={<Contact />} />
 
-        <Route path="/product/:productId" element={<ProductDetails />} />
-        <Route path="/admin/add-product" element={<AddProduct />} />
+        <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/auth/login" element={<Login />} />
+       
+        <Route element={<RequireAuth allowedRoles={['ADMIN']} />}>
+          <Route path="/admin/add-product" element={<AddProduct />} />
+        </Route>
 
-        <Route element={<RequireAuth />}>
+        <Route element={<RequireAuth  allowedRoles={['ADMIN', 'USER']} />}>
+          <Route path="/user/profile" element={<Profile />} />
+          <Route path="/user/edit-profile" element={<EditProfile />} />
           <Route path="/order" element={<Order />} />
           <Route path="/order/success" element={<OrderSuccess />} />
           <Route path="/cart" element={<CartDetails />} />

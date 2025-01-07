@@ -49,15 +49,15 @@ function ResetPasssword() {
 
     const apiResponse = await dispatch(resetPassword(data));
     console.log();
-    
-    if(apiResponse?.payload?.data?.success){
-        navigate('/auth/login');
 
-        setData({
-            password: '',
-            cnfPassword: '',
-            resetToken: '',
-        })
+    if (apiResponse?.payload?.data?.success) {
+      navigate('/auth/login');
+
+      setData({
+        password: '',
+        cnfPassword: '',
+        resetToken: ''
+      });
     }
   }
   return (

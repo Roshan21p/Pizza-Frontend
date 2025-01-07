@@ -68,6 +68,15 @@ function Layout({ children }) {
                     </li>
                     <li>
                       <Link
+                        to="/admin/add-product"
+                        className="hover:text-[#FF9110] rounded-md font-semibold hover:bg-orange-200 block px-4 py-2"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        Add-Product
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         className="hover:text-[#FF9110] rounded-md font-semibold hover:bg-orange-200 block px-4 py-2"
                         onClick={handleLogout}
                       >
