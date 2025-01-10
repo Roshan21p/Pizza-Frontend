@@ -18,6 +18,9 @@ import EditProfile from './Pages/User/EditProfile';
 import AddProduct from './Pages/Admin/AddProduct';
 import ForgotPassword from './Pages/Password/ForgotPassword';
 import ResetPasssword from './Pages/Password/ResetPassword';
+import Checkout from './Pages/Payment/Checkout';
+import PaymentVerification from './Pages/Payment/PaymentVerification';
+import OrderFailure from './Pages/Order/OrderFailure';
 
 function App() {
   return (
@@ -46,7 +49,11 @@ function App() {
           <Route path="/user/edit-profile" element={<EditProfile />} />
           <Route path="/order" element={<Order />} />
           <Route path="/order/success" element={<OrderSuccess />} />
+          <Route path="/order/failure" element={<OrderFailure />} />
           <Route path="/cart" element={<CartDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment-verification" element={<PaymentVerification />} />
+
         </Route>
 
         <Route path="/*" element={<NotFound />} />

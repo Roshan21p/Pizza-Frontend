@@ -1,17 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../Layouts/Layout';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { placeOrder } from '../../Redux/Slices/OrderSlice';
+import { states } from '../../Constants/states';
 
 function Order() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { cartsData } = useSelector((state) => state.cart);
+ // const { flat, area, landmark, pincode, city, state } = useSelector((state) => state?.auth?.data?.address);
+ const address = useSelector((state) => state?.auth?.data?.address);
+
+ const totalPrice = cartsData?.items?.reduce(
+  (acc, item) => acc + item?.quantity * item?.product?.price,
+  0
+);
 
   const [details, setDetails] = useState({
-    paymentMethod: 'OFFLINE',
+    paymentMethod: 'CARD',
     address: {
       flat: '',
       area: '',
@@ -22,38 +28,56 @@ function Order() {
     }
   });
 
+  useEffect(() => {
+    if(address){
+      setDetails((prev) => ({
+        ...prev,
+        address: {
+          flat: address.flat || '',
+          area: address.area || '',
+          landmark: address.landmark || '',
+          pincode: address.pincode || '',
+          city: address.city || '',
+          state: address.state || ''
+        }
+      }));
+    }
+  }, [])
+
   function handleUserInput(e) {
     const { name, value } = e.target;
-    setDetails({
-      ...details,
-      address: {
-        ...details.address, // Spread the previous address properties
-        [name]: value // Update the specific field
-      }
-    });
+    if (name === 'paymentMethod') {
+      setDetails((prevDetails) => ({
+        ...prevDetails,
+        paymentMethod: value
+      }));
+    } else {
+      setDetails((prevDetails) => ({
+        ...prevDetails,
+        address: {
+          ...prevDetails.address,
+          [name]: value
+        }
+      }));
+    }
   }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    if (details.paymentMethod === '' || details.address === '') {
+    if (!details.address.flat || !details.address.area || !details.address.landmark || !details.address.city || !details.address.state) {
       toast.error('Please fill all the fields');
       return;
     }
+
 
     if (!details.address.pincode.match(/^[1-9][0-9]{5}$/)) {
       toast.error('Invalid pincode. Enter a 6-digit number starting from 1-9.');
       return;
     }
 
-    const response = await dispatch(placeOrder());
-    console.log('Order response', response);
 
-    if (response?.payload?.data?.success) {
-      toast.success('Order placed successfully');
-      navigate('/order/success');
-    } else {
-      toast.error('Something went wrong cannot place the order');
-    }
+  // Navigate to the payment page with order details
+  navigate('/checkout', { state: { orderDetails: details, totalPrice } });
   }
 
   return (
@@ -70,15 +94,12 @@ function Order() {
                 ₹{' '}
                 {cartsData?.items?.length === 0
                   ? ''
-                  : cartsData?.items?.reduce(
-                      (acc, item) => acc + item?.quantity * item?.product?.price,
-                      0
-                    )}
+                  : totalPrice}
               </span>
             </p>
           </div>
 
-          <form onSubmit={handleFormSubmit}>
+          <form noValidate onSubmit={handleFormSubmit}>
             <div className="relative flex-grow  w-full">
               <label
                 htmlFor="paymentMethod"
@@ -89,11 +110,11 @@ function Order() {
               <select
                 name="paymentMethod"
                 required
+                value={details.paymentMethod}
                 onChange={handleUserInput}
                 className="p-2 border rounded-md focus:outline-none  focus:border-yellow-500 bg-white text-gray-700 w-full"
               >
-                <option value="OFFLINE">Offline</option>
-                <option value="ONLINE">Online</option>
+                <option value="CARD">Card - VISA, MasterCard</option>
               </select>
             </div>
 

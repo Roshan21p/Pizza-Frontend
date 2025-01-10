@@ -40,10 +40,10 @@ function Layout({ children }) {
   return (
     <div>
       <nav className="text-[#6B7280] font-mono border-none sm:h-12 shadow-md w-full px-4">
-        <div className="flex items-center sm:justify-around justify-between mt-4">
+        <div className="flex items-center  sm:justify-between justify-between mt-4">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
-            <p className="mr-2 mb-2 text-[#FF9110] text-2xl sm:text-3xl">Pizzify</p>
+          <div className="flex items-center   cursor-pointer" onClick={() => navigate('/')}>
+            <p className="mr-2 mb-2 sm:pl-[50px] md:pl-[70px]  text-[#FF9110] text-2xl sm:text-3xl">Pizzify</p>
             <img src={Pizzalogo} alt="Pizza logo" className="w-16 mt-[-16px] h-16" />
           </div>
 
@@ -96,7 +96,7 @@ function Layout({ children }) {
               <Link to="/cart">
                 <div>
                   <img src={CartIcon} className="w-8 h-8 inline" alt="Cart" />
-                  <p className="text-black inline">{cartsData?.items?.length}</p>
+                  <p className="text-black inline sm:pr-[70px] md:pr-[100px]">{cartsData?.items?.length}</p>
                 </div>
               </Link>
             )}

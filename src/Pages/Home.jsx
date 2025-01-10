@@ -46,7 +46,7 @@ function Home() {
         </section>
 
         {/* Services section */}
-        <section className="py-4 mt-6 bg-gradient-to-r from-amber-50 to-orange-300">
+        <section className="py-4 mt-6  bg-gradient-to-r from-amber-50 to-orange-300">
           <div className="container flex flex-col md:flex-row">
             <div className="flex flex-col items-center justify-center rounded-lg lg:w-1/2">
               <img src={CookingImage} width={500} className="rounded-lg" alt="Cooking" />
