@@ -21,6 +21,7 @@ import ResetPasssword from './Pages/Password/ResetPassword';
 import Checkout from './Pages/Payment/Checkout';
 import PaymentVerification from './Pages/Payment/PaymentVerification';
 import OrderFailure from './Pages/Order/OrderFailure';
+import MyOrders from './Pages/Order/MyOrders';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/user/profile" element={<Profile />} />
           <Route path="/user/edit-profile" element={<EditProfile />} />
           <Route path="/order" element={<Order />} />
+          <Route path="/order/me" element={<MyOrders />} />
           <Route path="/order/success" element={<OrderSuccess />} />
           <Route path="/order/failure" element={<OrderFailure />} />
           <Route path="/cart" element={<CartDetails />} />

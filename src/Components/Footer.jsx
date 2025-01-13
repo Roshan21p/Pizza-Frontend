@@ -8,7 +8,7 @@ function Footer() {
           <p className="text-xl text-center text-gray-500 sm:text-left">
             &copy; {year} Pizzify. All right reserved.
             <a
-              href="https://www.linkedin.com/in/roshan-prajapati-5813291b3"
+              href="https://www.linkedin.com/in/roshan-prajapati-960100308"
               rel="noopener noreferrer"
               className="ml-1 text-gray-600"
               target="_blank"

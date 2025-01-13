@@ -11,7 +11,7 @@ function Denied() {
         <button className="mt-5">
           <div className="relative inline-block text-sm font-medium text-[#fff] group active:text-yellow-500 focus:outline-none focus:ring">
             <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#EAB308] group-hover:translate-y-0 group-hover:translate-x-0" />
-            <span onClick={() => navigate(-1)} className="relative block px-8 py-3 bg-[#EAB308] border border-current">
+            <span onClick={() => navigate(-1, { replace: true })} className="relative block px-8 py-3 bg-[#EAB308] border border-current">
               Go Back
             </span>
           </div>

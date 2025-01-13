@@ -21,7 +21,7 @@ function Layout({ children }) {
     navigate('/');
   }
 
-  async function fetchCartDetails() {
+  async function fetchCartDetails() {    
     const response = await dispatch(getCartDetails());
     if (response?.payload?.isUnauthorized) {
       dispatch(logout());
@@ -68,6 +68,15 @@ function Layout({ children }) {
                     </li>
                     <li>
                       <Link
+                        to="/order/me"
+                        className="hover:text-[#FF9110] rounded-md font-semibold hover:bg-orange-200 block px-4 py-2"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        Orders
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         to="/admin/add-product"
                         className="hover:text-[#FF9110] rounded-md font-semibold hover:bg-orange-200 block px-4 py-2"
                         onClick={() => setIsDropdownOpen(false)}
@@ -87,7 +96,7 @@ function Layout({ children }) {
                 )}
               </div>
             ) : (
-              <Link to="/auth/login" className="hover:text-[#FF9110] ">
+              <Link to="/auth/login" className="hover:text-[#FF9110] lg:pr-[100px]">
                 Login
               </Link>
             )}
@@ -103,7 +112,7 @@ function Layout({ children }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-center sm:flex-row sm:justify-center gap-4 mt-2 sm:mt-[-35px]">
+        <div className="flex items-center justify-center sm:flex-row sm:pl-[100px]  gap-4 mt-2 sm:mt-[-35px]">
           <Link to="/menu" className="hover:text-[#FF9110]">
             Menu
           </Link>

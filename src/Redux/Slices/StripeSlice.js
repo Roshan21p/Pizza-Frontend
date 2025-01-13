@@ -35,15 +35,15 @@ const stripeSlice = createSlice({
     name: 'stripe',
     initialState,
     reducers: {
-        setSessionId: (state, action) => {
-            state.sessionId = action.payload;
-        },
-        setAllPayments: (state, action) => {
-            state.allPayments = action.payload;
-        },
-        setMonthlyPayments: (state, action) => {
-            state.monthlyPayments = action.payload;
-        },
+        // setSessionId: (state, action) => {
+        //     state.sessionId = action.payload;
+        // },
+        // setAllPayments: (state, action) => {
+        //     state.allPayments = action.payload;
+        // },
+        // setMonthlyPayments: (state, action) => {
+        //     state.monthlyPayments = action.payload;
+        // },
     },
     extraReducers: (builder) => {
         builder.addCase(createCheckoutSession.fulfilled, (state, action) => {

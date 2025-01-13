@@ -23,6 +23,9 @@ function PaymentVerification() {
           return;
         }
 
+        console.log("session_id",session_id);
+        
+
         // Dispatch the verifyPayment action to check the payment status
         const response = await dispatch(verifyPayment({session_id}));
         
@@ -54,8 +57,8 @@ function PaymentVerification() {
           <p className="text-gray-600 mt-2">
             Please wait while we verify your payment. This may take a few seconds.
           </p>
-          <div className="spinner mt-6"></div>
-        </div>
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-orange-500 mt-6"></div>
+          </div>
       ) : (
         <p className="text-center text-gray-500">
           Redirecting to the appropriate page...
