@@ -11,7 +11,7 @@ export const store = configureStore({
     product: ProductSliceReducer,
     cart: CartSliceReducer,
     order: OrderSliceReducer,
-    stripe: StripeSliceReducer,
+    stripe: StripeSliceReducer
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

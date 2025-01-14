@@ -8,13 +8,13 @@ import { states } from '../../Constants/states';
 function Order() {
   const navigate = useNavigate();
   const { cartsData } = useSelector((state) => state.cart);
- // const { flat, area, landmark, pincode, city, state } = useSelector((state) => state?.auth?.data?.address);
- const address = useSelector((state) => state?.auth?.data?.address);
+  // const { flat, area, landmark, pincode, city, state } = useSelector((state) => state?.auth?.data?.address);
+  const address = useSelector((state) => state?.auth?.data?.address);
 
- const totalPrice = cartsData?.items?.reduce(
-  (acc, item) => acc + item?.quantity * item?.product?.price,
-  0
-);
+  const totalPrice = cartsData?.items?.reduce(
+    (acc, item) => acc + item?.quantity * item?.product?.price,
+    0
+  );
 
   const [details, setDetails] = useState({
     paymentMethod: 'CARD',
@@ -29,7 +29,7 @@ function Order() {
   });
 
   useEffect(() => {
-    if(address){
+    if (address) {
       setDetails((prev) => ({
         ...prev,
         address: {
@@ -42,7 +42,7 @@ function Order() {
         }
       }));
     }
-  }, [])
+  }, []);
 
   function handleUserInput(e) {
     const { name, value } = e.target;
@@ -64,20 +64,24 @@ function Order() {
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    if (!details.address.flat || !details.address.area || !details.address.landmark || !details.address.city || !details.address.state) {
+    if (
+      !details.address.flat ||
+      !details.address.area ||
+      !details.address.landmark ||
+      !details.address.city ||
+      !details.address.state
+    ) {
       toast.error('Please fill all the fields');
       return;
     }
-
 
     if (!details.address.pincode.match(/^[1-9][0-9]{5}$/)) {
       toast.error('Invalid pincode. Enter a 6-digit number starting from 1-9.');
       return;
     }
 
-
-  // Navigate to the payment page with order details
-  navigate('/checkout', { state: { orderDetails: details, totalPrice } });
+    // Navigate to the payment page with order details
+    navigate('/checkout', { state: { orderDetails: details, totalPrice } });
   }
 
   return (
@@ -91,10 +95,7 @@ function Order() {
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               Total Price -
               <span className="font-bold text-red-500">
-                ₹{' '}
-                {cartsData?.items?.length === 0
-                  ? ''
-                  : totalPrice}
+                ₹ {cartsData?.items?.length === 0 ? '' : totalPrice}
               </span>
             </p>
           </div>

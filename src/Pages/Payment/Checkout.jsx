@@ -1,9 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import Layout from "../../Layouts/Layout";
-import toast from "react-hot-toast";
-import { useEffect } from "react";
-import { createCheckoutSession } from "../../Redux/Slices/StripeSlice";
-import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from 'react-router-dom';
+import Layout from '../../Layouts/Layout';
+import toast from 'react-hot-toast';
+import { useEffect } from 'react';
+import { createCheckoutSession } from '../../Redux/Slices/StripeSlice';
+import { useDispatch } from 'react-redux';
 
 function Checkout() {
   const location = useLocation();
@@ -12,44 +12,41 @@ function Checkout() {
 
   // Extract order details and total price from the state
   const { orderDetails, totalPrice } = location.state || {};
-  
 
   // Handle missing data
   useEffect(() => {
     if (!orderDetails || !totalPrice) {
-      toast.error("Order details are missing. Redirecting to the order page...");
-      navigate("/order");
+      toast.error('Order details are missing. Redirecting to the order page...');
+      navigate('/order');
     }
-
-    
   }, [orderDetails, totalPrice]);
 
-  async function handlePayment(){
-     // Create a checkout session via the backend
-     try {
-        const response = await dispatch(
-          createCheckoutSession({
-            address: orderDetails.address,
-            paymentMethod: orderDetails.paymentMethod,
-          })
-        );        
-        
-        if (response?.payload?.success) {
-          // Redirect to Stripe Checkout
-          const stripe = window.Stripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-          
-          const { sessionId } = response.payload;
-          
-          const { error } = await stripe.redirectToCheckout({ sessionId });
-          
-          if (error) {
-            toast.error(error.message);
-          }
+  async function handlePayment() {
+    // Create a checkout session via the backend
+    try {
+      const response = await dispatch(
+        createCheckoutSession({
+          address: orderDetails.address,
+          paymentMethod: orderDetails.paymentMethod
+        })
+      );
+
+      if (response?.payload?.success) {
+        // Redirect to Stripe Checkout
+        const stripe = window.Stripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+        const { sessionId } = response.payload;
+
+        const { error } = await stripe.redirectToCheckout({ sessionId });
+
+        if (error) {
+          toast.error(error.message);
         }
-      } catch (error) {
-        toast.error("Payment session creation failed. Please try again.");
       }
-  };
+    } catch (error) {
+      toast.error('Payment session creation failed. Please try again.');
+    }
+  }
 
   return (
     <Layout>
@@ -69,8 +66,7 @@ function Checkout() {
             <div className="mb-6">
               <h2 className="text-lg font-bold text-gray-700">Order Summary</h2>
               <p className="text-gray-600">
-                Total Price:{" "}
-                <span className="font-bold text-red-500">₹ {totalPrice}</span>
+                Total Price: <span className="font-bold text-red-500">₹ {totalPrice}</span>
               </p>
             </div>
 

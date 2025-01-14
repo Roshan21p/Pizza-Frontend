@@ -22,6 +22,7 @@ import Checkout from './Pages/Payment/Checkout';
 import PaymentVerification from './Pages/Payment/PaymentVerification';
 import OrderFailure from './Pages/Order/OrderFailure';
 import MyOrders from './Pages/Order/MyOrders';
+import OrderDetails from './Pages/Order/OrderDetails';
 
 function App() {
   return (
@@ -37,25 +38,24 @@ function App() {
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
         <Route path="/auth/reset-password/:resetToken" element={<ResetPasssword />} />
 
-
         <Route path="/auth/signup" element={<Signup />} />
         <Route path="/auth/login" element={<Login />} />
-       
+
         <Route element={<RequireAuth allowedRoles={['ADMIN']} />}>
           <Route path="/admin/add-product" element={<AddProduct />} />
         </Route>
 
-        <Route element={<RequireAuth  allowedRoles={['ADMIN', 'USER']} />}>
+        <Route element={<RequireAuth allowedRoles={['ADMIN', 'USER']} />}>
           <Route path="/user/profile" element={<Profile />} />
           <Route path="/user/edit-profile" element={<EditProfile />} />
           <Route path="/order" element={<Order />} />
           <Route path="/order/me" element={<MyOrders />} />
+          <Route path="/order/:orderId" element={<OrderDetails />} />
           <Route path="/order/success" element={<OrderSuccess />} />
           <Route path="/order/failure" element={<OrderFailure />} />
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/payment-verification" element={<PaymentVerification />} />
-
         </Route>
 
         <Route path="/*" element={<NotFound />} />

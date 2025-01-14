@@ -1,6 +1,6 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import Layout from "../../Layouts/Layout";
-import OrderSuccessImage from "../../assets/Images/ordered-success.png";
+import { useLocation, useNavigate } from 'react-router-dom';
+import Layout from '../../Layouts/Layout';
+import OrderSuccessImage from '../../assets/Images/ordered-success.png';
 
 function OrderSuccess() {
   const navigate = useNavigate();
@@ -34,22 +34,21 @@ function OrderSuccess() {
             <h2 className="text-lg font-bold text-gray-700">Order Summary</h2>
             <div className="text-gray-600 mt-4 space-y-2">
               <p>
-                <strong>Order ID:</strong> {orderDetails?.orderId || "N/A"}
+                <strong>Order ID:</strong> {orderDetails?.orderId || 'N/A'}
               </p>
               <p>
-                <strong>Total Amount:</strong> ₹{orderDetails?.totalPrice || "0.00"}
+                <strong>Total Amount:</strong> ₹{orderDetails?.totalPrice || '0.00'}
               </p>
               <p>
                 <strong>Shipping Address:</strong>
               </p>
               {orderDetails?.address ? (
                 <>
-                  <p>{orderDetails?.address?.flat || "N/A"}</p>
-                  <p>{orderDetails?.address?.area || "N/A"}</p>
+                  <p>{orderDetails?.address?.flat || 'N/A'}</p>
+                  <p>{orderDetails?.address?.area || 'N/A'}</p>
                   <p>
-                    {orderDetails?.address?.city || "N/A"},{" "}
-                    {orderDetails?.address?.state || "N/A"} -{" "}
-                    {orderDetails?.address?.pincode || "N/A"}
+                    {orderDetails?.address?.city || 'N/A'}, {orderDetails?.address?.state || 'N/A'}{' '}
+                    - {orderDetails?.address?.pincode || 'N/A'}
                   </p>
                 </>
               ) : (
@@ -64,7 +63,8 @@ function OrderSuccess() {
                 <ul className="mt-2 space-y-1">
                   {orderDetails?.items.map((item, index) => (
                     <li key={index} className="text-gray-600">
-                      {item.price_data.product_data.name} (x{item.quantity}) - ₹{(item.price_data.unit_amount / 100).toFixed(2)}
+                      {item.price_data.product_data.name} (x{item.quantity}) - ₹
+                      {(item.price_data.unit_amount / 100).toFixed(2)}
                     </li>
                   ))}
                 </ul>
@@ -77,7 +77,7 @@ function OrderSuccess() {
           {/* Go Back Home Button */}
           <div className="text-center mt-8">
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate('/')}
               className="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg"
             >
               Go Back Home

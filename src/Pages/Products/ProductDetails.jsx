@@ -6,16 +6,16 @@ import Layout from '../../Layouts/Layout';
 import {
   addProductToCart,
   getCartDetails,
-  removeAllProductFromCart,
+  removeAllProductFromCart
 } from '../../Redux/Slices/CartSlice';
 
 function ProductDetails() {
   const { productId } = useParams();
-  const  items  =  useSelector((state) => state?.cart?.cartsData?.items)
+  const items = useSelector((state) => state?.cart?.cartsData?.items);
   const dispatch = useDispatch();
   const [productDetails, setProductDetails] = useState({});
   const [isInCart, setIsInCart] = useState(false); // Check if product is in cart
-  
+
   async function fetchProductDetails() {
     const details = await dispatch(getProductDetails(productId));
     console.log(details);
@@ -30,8 +30,9 @@ function ProductDetails() {
     }
   }
   async function handleRemoveAll() {
-
-    const itemsToRemove = items?.filter(item => item.product._id === productId).map(item => item._id);    
+    const itemsToRemove = items
+      ?.filter((item) => item.product._id === productId)
+      .map((item) => item._id);
 
     // Remove product from cart
     const response = await dispatch(removeAllProductFromCart(itemsToRemove));
@@ -42,10 +43,10 @@ function ProductDetails() {
   }
 
   useEffect(() => {
-       fetchProductDetails();
-      // Check if the product is already in the cart
-      const productInCart = items?.find(item => item.product._id === productId);      
-      setIsInCart(!!productInCart);
+    fetchProductDetails();
+    // Check if the product is already in the cart
+    const productInCart = items?.find((item) => item.product._id === productId);
+    setIsInCart(!!productInCart);
   }, [items, productId]);
 
   return (
