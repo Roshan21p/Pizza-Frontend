@@ -56,9 +56,9 @@ function Menu() {
                       >
                         <Link to={`/product/${item._id}`}>
                           <img
-                            src={item?.productImage}
+                            src={item?.productImage?.secure_url}
                             alt="Product"
-                            className="object-fill w-full h-40 md:h-48 lg:h-52"
+                            className="object-center w-full  md:h-48 lg:h-52"
                           />
                           <div className="p-4 h-40 md:h-48">
                             <h2 className="text-xl text-[#FF9110] font-medium tracking-widest">
@@ -67,7 +67,7 @@ function Menu() {
                             <h2 className="mb-2 text-lg font-medium text-gray-900">
                               {item?.productName}
                             </h2>
-                            <p className="mb-3 text-sm text-gray-700 leading-relaxed overflow-hidden line-clamp-3">
+                            <p className="mb-3 text-sm text-gray-700 leading-relaxed overflow-hidden line-clamp-2 sm:line-clamp-3">
                               {item?.description}
                             </p>
                             <p className="text-lg font-medium text-gray-900">₹{item?.price}</p>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Pizzalogo from '../assets/Images/pizza1.png';
+import Pizzalogo from '../assets/Images/Pizza_logo.png';
 import Footer from '../Components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import CartIcon from '../assets/Images/cart.svg';
@@ -43,28 +43,30 @@ function Layout({ children }) {
       <nav className="text-[#6B7280] font-mono border-none sm:h-12 shadow-md w-full px-4">
         <div className="flex items-center  sm:justify-between justify-between mt-4">
           {/* Logo */}
-          <div className="flex items-center  cursor-pointer" onClick={() => navigate('/')}>
-            <p className="mr-2 mb-2 sm:pl-[50px] md:pl-[70px] font-bold text-[#FF9110] text-2xl sm:text-3xl">
-              Pizzify
+          <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
+            <p className="mr-2 flex items-center sm:pl-[50px] md:pl-[70px] font-bold text-[#FF9110] text-2xl sm:text-3xl">
+              <span className="mb-5">Pizzify</span>
             </p>
             <img src={Pizzalogo} alt="Pizza logo" className="w-16 mt-[-16px] h-16" />
           </div>
 
           {/* Profile & Cart */}
-          <div className="flex items-center gap-6 sm:gap-8">
+          <div className="flex items-center gap-6 sm:gap-8 mb-2">
             {isLoggedIn ? (
               <div className="relative">
-              {userData?.avatar ? (
-              <img
-                src={userData?.avatar}
-                alt="User profile image"
-                className="rounded-full w-10 h-10 cursor-pointer border-2 border-[#FF9110] "
-                onClick={toggleDropdown}
-              />
-            ) : (
-              <BsPersonCircle className="rounded-full w-10 h-10 cursor-pointer hover:text-[#FF9110]"
-              onClick={toggleDropdown} />
-            )}
+                {userData?.avatar ? (
+                  <img
+                    src={userData?.avatar}
+                    alt="User profile image"
+                    className="rounded-full w-10 h-10 cursor-pointer border-2 border-[#FF9110] "
+                    onClick={toggleDropdown}
+                  />
+                ) : (
+                  <BsPersonCircle
+                    className="rounded-full w-10 h-10 cursor-pointer hover:text-[#FF9110]"
+                    onClick={toggleDropdown}
+                  />
+                )}
                 {isDropdownOpen && (
                   <ul className="absolute top-full sm:right-[-100px] right-[-100px] sm:mt-2 mt-9 bg-tran rounded-md z-[1] w-36 p-2 shadow">
                     <li>
@@ -124,7 +126,7 @@ function Layout({ children }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-center sm:flex-row sm:pl-[100px]  gap-4 mt-2 sm:mt-[-35px]">
+        <div className="flex items-center justify-center sm:flex-row sm:pl-[100px]  gap-4 mt-2 sm:mt-[-45px]">
           <Link to="/menu" className="hover:text-[#FF9110]">
             Menu
           </Link>

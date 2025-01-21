@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getOrderById } from '../../Redux/Slices/OrderSlice';
 import Layout from '../../Layouts/Layout';
 import { formatDate } from '../../Helpers/formatDate';
+import generateInvoice from '../../Components/Invoice';
 
 function OrderDetails() {
   const { orderId } = useParams();
   const dispatch = useDispatch();
   const [orderDetails, setOrderDetails] = useState(null);
+  const { data } = useSelector((state) => state?.auth);
+
   console.log('order', orderDetails, orderId);
 
   async function fetchOrderDetails() {
@@ -59,7 +62,9 @@ function OrderDetails() {
             <table className="w-full md:w-3/4 lg:w-2/3 mx-auto  border-2 border-[#FF9110] rounded-lg">
               <thead>
                 <tr>
-                  <th className="py-2 px-2 border-2 border-r border-[#FF9110] text-left">Product</th>
+                  <th className="py-2 px-2 border-2 border-r border-[#FF9110] text-left">
+                    Product
+                  </th>
                   <th className="py-2 px-2 border-2 border-r border-[#FF9110] text-left">
                     Quantity
                   </th>
@@ -68,7 +73,7 @@ function OrderDetails() {
               </thead>
               <tbody>
                 {orderDetails?.items?.map((item) => (
-                  <tr key={item?.product?._id} >
+                  <tr key={item?.product?._id}>
                     <td className="py-2 px-2 border-2  border-[#FF9110] text-left underline">
                       <Link to={`/product/${item?.product?._id}`}>
                         {item?.product?.productName}
@@ -86,7 +91,10 @@ function OrderDetails() {
             </table>
           </div>
 
-          <button className="bg-green-500 mt-2 text-white px-4 py-2 rounded hover:bg-green-600">
+          <button
+            onClick={() => generateInvoice(orderDetails, data)}
+            className="bg-green-500 mt-2 text-white px-4 py-2 rounded hover:bg-green-600"
+          >
             Download Invoice
           </button>
         </div>

@@ -52,12 +52,12 @@ function ProductDetails() {
   return (
     <Layout>
       <section className="overflow-hidden text-gray-600 body-font ">
-        <div className="container px-5 py-16 mx-auto min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
+        <div className="px-5 py-16 mx-auto min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
           <div className="flex flex-wrap mx-auto lg:w-4/5 ">
             <img
               alt="ecommerce"
-              className="object-cover object-center bg-white w-full rounded lg:w-1/2 lg:h-[70vh] shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
-              src={productDetails?.productImage}
+              className="object-center bg-white w-full rounded lg:w-1/2 lg:h-[70vh] shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
+              src={productDetails?.productImage?.secure_url}
             />
             <div className="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-20 xl:py-28 lg:mt-0">
               <h2 className="text-xl tracking-widest text-[#FF9110] font-semibold title-font">

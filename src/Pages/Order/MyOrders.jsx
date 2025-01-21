@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
 import { getMyOrders } from '../../Redux/Slices/OrderSlice';
 import Layout from '../../Layouts/Layout';
-import { FaEye, FaPrint } from 'react-icons/fa'; // Import icons from react-icons
+import { FaEye } from 'react-icons/fa'; // Import icons from react-icons
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../Helpers/formatDate';
 
@@ -14,11 +13,6 @@ function MyOrders() {
   useEffect(() => {
     dispatch(getMyOrders());
   }, []);
-
-  const handleDownloadInvoice = (orderId) => {
-    toast.success(`Downloading invoice for order ID: ${orderId}`);
-    // Add logic to download invoice, e.g., API call to get PDF.
-  };
 
   return (
     <Layout>
@@ -38,13 +32,13 @@ function MyOrders() {
             </thead>
             <tbody>
               {orders?.map((order) => (
-                <tr key={order._id}>
-                  <td className="py-2 px-4 border-2   border-[#FF9110]">{order._id}</td>
+                <tr key={order?._id}>
+                  <td className="py-2 px-4 border-2   border-[#FF9110]">{order?._id}</td>
                   <td className="py-2 px-4 border-2  border-[#FF9110]">
-                    {formatDate(order.createdAt)}
+                    {formatDate(order?.createdAt)}
                   </td>
                   <td className="py-2 px-4 border-2 border-[#FF9110]">
-                    ₹{order.totalPrice.toFixed(2)}
+                    ₹{order?.totalPrice?.toFixed(2)}
                   </td>
                   <td className="py-2 px-4 border-2  border-[#FF9110]">
                     <span
@@ -60,17 +54,11 @@ function MyOrders() {
                   <td className="py-2 px-4 border-2 border-[#FF9110]">
                     <div className="flex flex-col sm:flex-row gap-2">
                       <Link
-                        to={`/order/${order._id}`}
-                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                        to={`/order/${order?._id}`}
+                        className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                       >
-                        <FaEye className="inline-block w-4 h-4 mr-1" />
+                        <FaEye className=" w-10 h-6 mr-1" />
                       </Link>
-                      <button
-                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
-                        onClick={() => handleDownloadInvoice(order._id)}
-                      >
-                        <FaPrint className="inline-block w-4 h-4 mr-1" />
-                      </button>
                     </div>
                   </td>
                 </tr>

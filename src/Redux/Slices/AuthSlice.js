@@ -154,7 +154,7 @@ const AuthSlice = createSlice({
         localStorage.clear();
       })
       .addCase(getUserData.fulfilled, (state, action) => {
-        console.log("getuserData",action);
+        console.log('getuserData', action);
 
         if (!action?.payload?.data?.userData) return;
         state.isLoggedIn = action?.payload?.success;

@@ -6,7 +6,7 @@ function Footer() {
       <div className="bg-gradient-to-r from-amber-50 to-orange-300">
         <div className="container flex flex-col flex-wrap px-5 py-10 mx-auto sm:flex-row">
           <p className="text-xl text-center text-gray-500 sm:text-left">
-            &copy; {year} Pizzify. All right reserved.
+            Copyright &copy; {year} Pizzify. All right reserved.
             <a
               href="https://www.linkedin.com/in/roshan-prajapati-960100308"
               rel="noopener noreferrer"
