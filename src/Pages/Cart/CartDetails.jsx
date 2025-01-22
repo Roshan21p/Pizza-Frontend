@@ -56,7 +56,7 @@ function CartDetails() {
                       <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                         <img
                           className="hidden w-ful h-56 dark:block rounded-md"
-                          src={item?.product?.productImage}
+                          src={item?.product?.productImage?.secure_url}
                           alt={item?.product?.productName}
                         />
                         <div className="flex-1 w-full  min-w-0 md:order-2 md:max-w-md">

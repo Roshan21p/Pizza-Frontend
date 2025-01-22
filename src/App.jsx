@@ -23,6 +23,7 @@ import PaymentVerification from './Pages/Payment/PaymentVerification';
 import OrderFailure from './Pages/Order/OrderFailure';
 import MyOrders from './Pages/Order/MyOrders';
 import OrderDetails from './Pages/Order/OrderDetails';
+import AdminDashboard from './Pages/Admin/AdminDashboard';
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
 
         <Route element={<RequireAuth allowedRoles={['ADMIN']} />}>
           <Route path="/admin/add-product" element={<AddProduct />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
         </Route>
 
         <Route element={<RequireAuth allowedRoles={['ADMIN', 'USER']} />}>

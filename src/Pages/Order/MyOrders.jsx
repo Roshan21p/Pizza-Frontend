@@ -9,6 +9,7 @@ import { formatDate } from '../../Helpers/formatDate';
 function MyOrders() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state?.order?.ordersData);
+  const { isLoggedIn, role } = useSelector((state) => state?.auth)
 
   useEffect(() => {
     dispatch(getMyOrders());

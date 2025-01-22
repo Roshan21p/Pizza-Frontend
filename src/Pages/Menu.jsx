@@ -26,14 +26,14 @@ function Menu() {
   return (
     <Layout>
       <div className="mx-auto min-h-screen bg-gradient-to-r from-amber-50 to-orange-300">
-        <div className="container  mx-auto px-4 py-8">
+        <div className=" mx-auto px-4 py-8">
           {/* Category buttons */}
           <div className="flex flex-wrap justify-center space-x-4 sm:space-x-10 mb-9">
             {categories.map((category, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedCategory(category.value)}
-                className={`px-1 py-1 sm:px-3 sm:py-2  font-semibold rounded-md transition duration-200 ease-in-out ${
+                className={`px-1 py-1 sm:px-3 sm:py-2  font-semibold rounded-md mt-2 transition duration-200 ease-in-out ${
                   selectedCategory === category.value
                     ? 'bg-orange-400 text-white'
                     : 'bg-[#FFD700] text-white hover:bg-orange-400'
