@@ -24,7 +24,7 @@ function Sidebar(){
         {/* Hamburger/Close Icon */}
       <button
         onClick={toggleSidebar}
-        className={` bg-[#FF9110] text-white fixed z-50 top-15  ${
+        className={` bg-[#FF9110] text-white  z-50 top-15  ${
           isOpen ? "left-[163px] sm:left-[213px]  p-2" : "left-0 p-4"
         } transition-all duration-300`}
       >
