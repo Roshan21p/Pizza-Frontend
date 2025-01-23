@@ -22,7 +22,6 @@ function Menu() {
       ? productsData
       : productsData?.filter((item) => item.category === selectedCategory);
 
-  console.log(filteredProduct);
   return (
     <Layout>
       <div className="mx-auto min-h-screen bg-gradient-to-r from-amber-50 to-orange-300">

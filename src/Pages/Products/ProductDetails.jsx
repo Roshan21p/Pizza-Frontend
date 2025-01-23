@@ -47,7 +47,7 @@ function ProductDetails() {
     // Check if the product is already in the cart
     const productInCart = items?.find((item) => item.product._id === productId);
     setIsInCart(!!productInCart);
-  }, [items, productId]);
+  }, [productId]);
 
   return (
     <Layout>

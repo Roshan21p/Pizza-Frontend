@@ -2,7 +2,7 @@ import { BsTrash } from "react-icons/bs";
 import Sidebar from "../../Components/Sidebar";
 import Layout from "../../Layouts/Layout";
 import { MdOutlineModeEdit } from "react-icons/md";
-import { getAllProducts } from "../../Redux/Slices/ProductSlice";
+import { deleteProduct, getAllProducts } from "../../Redux/Slices/ProductSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,14 @@ function AdminDashboard() {
     })();
   }, []);
 
-  const handleProductDelete = (id) => {
-    console.log(`Product with ID ${id} deleted`); // Replace with actual delete logic
+  async function handleProductDelete(id){
+      if(window.confirm('Are you sure you want the delete the product.')){
+        const response = await dispatch(deleteProduct(id));        
+
+        if(response?.payload?.data?.success){
+          await dispatch(getAllProducts());
+        }
+      }
   };
 
   return (
@@ -32,7 +38,7 @@ function AdminDashboard() {
           </h1>
           <div className="mt-10 mx-auto w-full sm:w-[90%] lg:w-[80%] flex flex-col items-center justify-center gap-10 mb-10">
             <div className="flex w-full items-center justify-between">
-              <h1 className="text-center text-xl sm:text-2xl font-semibold text-[#6B7280] hover:text-[#FF9110]">
+              <h1 className="text-center text-sm sm:text-2xl font-bold sm:font-semibold text-[#6B7280] hover:text-[#FF9110]">
                 Product Overview
               </h1>
 
@@ -53,7 +59,7 @@ function AdminDashboard() {
                     },
                   });
                 }}
-                className="text-[#6B7280] bg-amber-400  transition-all ease-in-out duration-300 rounded py-2 px-4 font-semibold text-xl sm:text-2xl cursor-pointer"
+                className="text-[#6B7280] bg-amber-400  transition-all ease-in-out duration-300 rounded py-2 px-4 sm:font-semibold font-bold text-sm sm:text-2xl cursor-pointer"
               >
                 Create New Product
               </button>

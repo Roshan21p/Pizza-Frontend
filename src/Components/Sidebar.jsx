@@ -20,11 +20,11 @@ function Sidebar(){
     };
   }, [isOpen])
     return(
-        <div>
+        <div className="relative">
         {/* Hamburger/Close Icon */}
       <button
         onClick={toggleSidebar}
-        className={` bg-[#FF9110] text-white  z-50 top-15  ${
+        className={` bg-[#FF9110] absolute text-white  z-50   ${
           isOpen ? "left-[163px] sm:left-[213px]  p-2" : "left-0 p-4"
         } transition-all duration-300`}
       >
@@ -33,7 +33,7 @@ function Sidebar(){
 
       {/* Sidebar */}
       <div
-        className={`w-[200px] sm:w-[250px] h-[80%] fixed top-15 left-0 bg-[#FFFFCC] text-[#6B7280] z-40 transform ${
+        className={`w-[200px] sm:w-[250px] h-[90%] fixed   left-0 bg-[#FFFFCC] text-[#6B7280] z-40 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300`}
       >

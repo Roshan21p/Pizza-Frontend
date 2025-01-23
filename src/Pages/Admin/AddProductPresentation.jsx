@@ -1,7 +1,11 @@
+import { useLocation } from 'react-router-dom';
 import Layout from '../../Layouts/Layout';
 import Food from '../../assets/Images/food.svg';
 
-function AddProductPresentation({ handleInput, handleFormSubmit }) {
+function AddProductPresentation({ handleInput, handleFormSubmit,productDetails }) {
+
+  const { initialProductData } = useLocation().state;
+
   return (
     <Layout>
       <section className="py-4 min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
@@ -10,7 +14,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
             <img src={Food} alt="Food" />
           </div>
           <div className="max-w-md md:w-4/6 mx-auto mt-8 bg-gray-100 rounded-lg p-4">
-            <h2 className="mb-4 text-2xl font-semibold">Add Product</h2>
+            <h2 className="mb-4 text-2xl font-semibold text-[#FF9110]">{initialProductData?.newProduct ? 'Add New Product' : 'Edit Product'}</h2>
 
             <form>
               {/* Product Name */}
@@ -21,6 +25,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                 <input
                   type="text"
                   onChange={handleInput}
+                  value={productDetails?.productName}
                   required
                   minLength={5}
                   maxLength={60}
@@ -38,6 +43,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                 <input
                   type="text"
                   onChange={handleInput}
+                  value={productDetails?.description}
                   required
                   minLength={5}
                   maxLength={500}
@@ -55,6 +61,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                 <input
                   type="number"
                   onChange={handleInput}
+                  value={productDetails?.price}
                   required
                   name="price"
                   id="price"
@@ -70,6 +77,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                 <input
                   type="number"
                   onChange={handleInput}
+                  value={productDetails?.quantity}
                   required
                   name="quantity"
                   id="quantity"
@@ -86,6 +94,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                   name="category"
                   id="category"
                   onChange={handleInput}
+                  value={productDetails?.category}
                   className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
                   <option value="veg">Vegetarian</option>
@@ -103,6 +112,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                 <input
                   type="file"
                   onChange={handleInput}
+                  // value={productDetails?.productImage || ''}
                   required
                   name="productImage"
                   id="productImage"
@@ -116,7 +126,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit }) {
                 type="submit"
                 className="w-full bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
               >
-                Add product
+              {initialProductData?.newProduct  ? 'Add product': 'Update Product'}
               </button>
             </form>
           </div>
