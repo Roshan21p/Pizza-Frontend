@@ -10,8 +10,7 @@ function AddProduct() {
   const navigate = useNavigate();
   const { initialProductData } = useLocation().state;
 
-  console.log("initialProductData",initialProductData);
-  
+  console.log('initialProductData', initialProductData);
 
   const [productDetails, setProductDetails] = useState({
     productName: '',
@@ -19,21 +18,21 @@ function AddProduct() {
     price: '',
     quantity: '',
     category: 'veg',
-    productImage: null,
+    productImage: null
   });
 
   useEffect(() => {
-    if(initialProductData && !initialProductData?.newProduct){
+    if (initialProductData && !initialProductData?.newProduct) {
       setProductDetails({
         productName: initialProductData?.productName || '',
         description: initialProductData?.description || '',
-        price:  initialProductData?.price || '',
+        price: initialProductData?.price || '',
         quantity: initialProductData?.quantity || '',
         category: initialProductData?.category || 'veg',
-        productImage: null,
+        productImage: null
       });
     }
-  }, [initialProductData])
+  }, [initialProductData]);
 
   function handleInput(e) {
     const { name, type, value, files } = e.target;
@@ -61,7 +60,7 @@ function AddProduct() {
       !productDetails?.description ||
       !productDetails?.price ||
       !productDetails?.quantity ||
-      !productDetails?.productImage && initialProductData?.newProduct
+      (!productDetails?.productImage && initialProductData?.newProduct)
     ) {
       toast.error('Missing values from the form');
       return;
@@ -74,39 +73,38 @@ function AddProduct() {
     formData.append('quantity', productDetails?.quantity);
     formData.append('category', productDetails?.category);
 
-    if(productDetails?.productImage){
+    if (productDetails?.productImage) {
       formData.append('productImage', productDetails?.productImage); // Append the image file
     }
 
     let apiResponse;
-    if(initialProductData?.newProduct){
-       apiResponse = await dispatch(addNewProduct(formData));
+    if (initialProductData?.newProduct) {
+      apiResponse = await dispatch(addNewProduct(formData));
     } else {
       const productId = initialProductData?._id;
-        apiResponse = await dispatch(updateProduct({ productId, formData }));
+      apiResponse = await dispatch(updateProduct({ productId, formData }));
     }
     console.log('API Response of Product ', apiResponse);
-    if(apiResponse?.payload?.data?.success){
+    if (apiResponse?.payload?.data?.success) {
       setProductDetails({
         productName: '',
         description: '',
         price: '',
         quantity: '',
         category: 'veg',
-        productImage: undefined,
+        productImage: undefined
       });
 
       navigate('/menu');
     }
-   
   }
 
   return (
-  <AddProductPresentation 
-  handleInput={handleInput} 
-  handleFormSubmit={handleFormSubmit} 
-  productDetails={productDetails}
-  />
+    <AddProductPresentation
+      handleInput={handleInput}
+      handleFormSubmit={handleFormSubmit}
+      productDetails={productDetails}
+    />
   );
 }
 

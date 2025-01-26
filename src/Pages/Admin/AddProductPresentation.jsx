@@ -2,8 +2,7 @@ import { useLocation } from 'react-router-dom';
 import Layout from '../../Layouts/Layout';
 import Food from '../../assets/Images/food.svg';
 
-function AddProductPresentation({ handleInput, handleFormSubmit,productDetails }) {
-
+function AddProductPresentation({ handleInput, handleFormSubmit, productDetails }) {
   const { initialProductData } = useLocation().state;
 
   return (
@@ -14,7 +13,9 @@ function AddProductPresentation({ handleInput, handleFormSubmit,productDetails }
             <img src={Food} alt="Food" />
           </div>
           <div className="max-w-md md:w-4/6 mx-auto mt-8 bg-gray-100 rounded-lg p-4">
-            <h2 className="mb-4 text-2xl font-semibold text-[#FF9110]">{initialProductData?.newProduct ? 'Add New Product' : 'Edit Product'}</h2>
+            <h2 className="mb-4 text-2xl font-semibold text-[#FF9110]">
+              {initialProductData?.newProduct ? 'Add New Product' : 'Edit Product'}
+            </h2>
 
             <form>
               {/* Product Name */}
@@ -126,7 +127,7 @@ function AddProductPresentation({ handleInput, handleFormSubmit,productDetails }
                 type="submit"
                 className="w-full bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
               >
-              {initialProductData?.newProduct  ? 'Add product': 'Update Product'}
+                {initialProductData?.newProduct ? 'Add product' : 'Update Product'}
               </button>
             </form>
           </div>

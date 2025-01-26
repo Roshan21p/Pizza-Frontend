@@ -24,6 +24,8 @@ import OrderFailure from './Pages/Order/OrderFailure';
 import MyOrders from './Pages/Order/MyOrders';
 import OrderDetails from './Pages/Order/OrderDetails';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
+import AllOrders from './Pages/Admin/AllOrders';
+import AllProducts from './Pages/Admin/AllProducts';
 
 function App() {
   return (
@@ -46,7 +48,9 @@ function App() {
           <Route path="/admin/add-product" element={<AddProduct />} />
           <Route path="/admin/edit" element={<AddProduct />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/all-products" element={<AllProducts />} />
 
+          <Route path="/admin/all-orders" element={<AllOrders />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={['ADMIN', 'USER']} />}>

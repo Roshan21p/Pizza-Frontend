@@ -1,28 +1,26 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMyOrders } from '../../Redux/Slices/OrderSlice';
-import Layout from '../../Layouts/Layout';
-import { FaEye } from 'react-icons/fa';
+import AdminLayout from '../../Layouts/AdminLayout';
+import { useEffect } from 'react';
+import { MdOutlineModeEdit } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../Helpers/formatDate';
+import { getAllOrders } from '../../Redux/Slices/OrderSlice';
 
-function MyOrders() {
+function AllOrders() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state?.order?.ordersData);
-  console.log("orders",orders);
-  
 
   useEffect(() => {
-    dispatch(getMyOrders());
+    dispatch(getAllOrders());
   }, []);
-
   return (
-    <Layout>
-      <div className="text-gray-600 mx-auto p-4 bg-gradient-to-r from-amber-50 to-orange-300 min-h-screen">
-        <h1 className="text-2xl text-[#FF9110] text-center font-bold mb-6">My Orders</h1>
-
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-gray-100 border-2 border-[#FF9110] rounded-lg shadow">
+    <AdminLayout>
+      <div className="text-gray-600 mx-auto p-4 sm:w-[90%] lg:w-[80%] ">
+        <h1 className="text-2xl font-semibold text-center text-[#6B7280] mb-6">
+          Total Orders : {orders ? orders?.length : '0'}
+        </h1>
+        <div className="overflow-x-auto ">
+          <table className="min-w-full bg-gray-100 border-2 border-[#FF9110]">
             <thead>
               <tr>
                 <th className="py-2 px-4 border-2 border-r border-[#FF9110] text-left">Order ID</th>
@@ -33,8 +31,8 @@ function MyOrders() {
               </tr>
             </thead>
             <tbody>
-              {orders?.map((order, index) => (
-                <tr key={order?._id || index}>
+              {orders?.map((order) => (
+                <tr key={order?._id}>
                   <td className="py-2 px-4 border-2   border-[#FF9110]">{order?._id}</td>
                   <td className="py-2 px-4 border-2  border-[#FF9110]">
                     {formatDate(order?.createdAt)}
@@ -57,9 +55,10 @@ function MyOrders() {
                     <div className="flex flex-col sm:flex-row gap-2">
                       <Link
                         to={`/order/${order?._id}`}
+                        state={{ from: '/admin/all-orders' }}
                         className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
                       >
-                        <FaEye className=" w-10 h-6 mr-1" />
+                        <MdOutlineModeEdit className=" w-10 h-6 mr-1" />
                       </Link>
                     </div>
                   </td>
@@ -75,8 +74,8 @@ function MyOrders() {
           </div>
         )}
       </div>
-    </Layout>
+    </AdminLayout>
   );
 }
 
-export default MyOrders;
+export default AllOrders;
