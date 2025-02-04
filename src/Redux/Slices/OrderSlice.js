@@ -24,7 +24,6 @@ export const getMyOrders = createAsyncThunk(
       return apiResponse;
     } catch (error) {
       console.log(error);
-      //toast.error(error?.response?.data?.message);
       return rejectWithValue(error?.response?.data || error?.message);
     }
   }
@@ -78,9 +77,9 @@ export const getAllOrders = createAsyncThunk(
 
 export const updateOrderStatus = createAsyncThunk(
   '/order/updateOrderStatus',
-  async ({orderId, status}, { rejectWithValue }) => {
+  async ({ orderId, status }, { rejectWithValue }) => {
     try {
-      const response = axiosInstance.put(`/orders/${orderId}/status`, {status});
+      const response = axiosInstance.put(`/orders/${orderId}/status`, { status });
       toast.promise(response, {
         loading: 'Updating your orders status...',
         success: (resolvedPromise) => {
@@ -105,13 +104,9 @@ const OrderSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getMyOrders.fulfilled, (state, action) => {
-      console.log('action', action);
-
       state.ordersData = action?.payload?.data?.data;
     });
     builder.addCase(getAllOrders.fulfilled, (state, action) => {
-      console.log('action', action);
-
       state.ordersData = action?.payload?.data?.data;
     });
   }

@@ -6,75 +6,97 @@ const initialState = {
   cartsData: null
 };
 
-export const addProductToCart = createAsyncThunk('/cart/addProduct', async (productId) => {
-  try {
-    const response = axiosInstance.post(`/carts/add/${productId}`);
-    toast.promise(response, {
-      loading: 'Adding product to cart',
-      success: 'Product added successfully',
-      error: 'Something went wrong cannot add product to cart'
-    });
-    const apiResponse = await response;
-    return apiResponse;
-  } catch (error) {
-    console.log(error);
-    toast.error(error?.response?.data?.message || error?.message);
-  }
-});
-export const removeProductFromCart = createAsyncThunk('/cart/removeProduct', async (productId) => {
-  try {
-    const response = axiosInstance.post(`/carts/remove/${productId}`);
-    toast.promise(response, {
-      loading: 'Removing product from cart',
-      error: 'Something went wrong cannot remove product from cart',
-      success: 'Product removed successfully'
-    });
-    const apiResponse = await response;
-    return apiResponse;
-  } catch (error) {
-    console.log(error);
-    toast.error(error?.response?.data?.message || error?.message);
-  }
-});
-export const getCartDetails = createAsyncThunk('/cart/getDetails', async () => {
-  try {
-    const response = axiosInstance.get(`/carts`);
-    toast.promise(response, {
-      loading: 'Fetching cart details',
-      error: 'Something went wrong cannot fetch cart',
-      success: 'Cart fetched successfully'
-    });
-    const apiResponse = await response;
-    return apiResponse;
-  } catch (error) {
-    console.log(error.response);
-    if (error?.response?.status === 401) {
-      toast.error('Please login to view cart');
-      return {
-        isUnauthorized: true
-      };
+export const addProductToCart = createAsyncThunk(
+  '/cart/addProduct',
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = axiosInstance.post(`/carts/add/${productId}`);
+      toast.promise(response, {
+        loading: 'Adding product to cart',
+        success: 'Product added successfully',
+        error: (error) => {
+          return error?.response?.data?.message || error?.message;
+        }
+      });
+      const apiResponse = await response;
+      return apiResponse;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error?.response?.data?.message || error?.message);
     }
-    toast.error(error?.response?.data?.message || error?.message);
   }
-});
+);
+export const removeProductFromCart = createAsyncThunk(
+  '/cart/removeProduct',
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = axiosInstance.post(`/carts/remove/${productId}`);
+      toast.promise(response, {
+        loading: 'Removing product from cart',
+        success: 'Product removed successfully',
+        error: (error) => {
+          return error?.response?.data?.message || error?.message;
+        }
+      });
+      const apiResponse = await response;
+      return apiResponse;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error?.response?.data?.message || error?.message);
+    }
+  }
+);
+export const getCartDetails = createAsyncThunk(
+  '/cart/getDetails',
+  async (__, { rejectWithValue }) => {
+    try {
+      const response = axiosInstance.get(`/carts`);
+      toast.promise(response, {
+        loading: 'Fetching cart details',
+        success: (resolvedPromise) => {
+          return resolvedPromise?.data?.message;
+        },
+        error: (error) => {
+          return error?.response?.data?.message || error?.message;
+        }
+      });
+      const apiResponse = await response;
+      return apiResponse;
+    } catch (error) {
+      console.log(error.response);
+      if (error?.response?.status === 401) {
+        toast.error('Please login to view cart');
+        return {
+          isUnauthorized: true
+        };
+      }
+      return rejectWithValue(error?.response?.data || error?.message);
+    }
+  }
+);
 
-export const removeAllProductFromCart = createAsyncThunk('/cart/clearCart', async (itemId) => {
-  try {
-    const response = axiosInstance.delete(`/carts/item/${itemId}`);
-    toast.promise(response, {
-      loading: 'Removing item from cart',
-      success: (resolvedPromise) => {
-        return resolvedPromise?.data?.message;
-      },
-      error: 'Something went wrong cannot remove item from cart'
-    });
-    const apiResponse = await response;
-    return apiResponse;
-  } catch (error) {
-    console.log(error);
-    toast.error(error?.response?.data?.message || error?.message);
+export const removeAllProductFromCart = createAsyncThunk(
+  '/cart/clearCart',
+  async (itemId, { rejectWithValue }) => {
+    try {
+      const response = axiosInstance.delete(`/carts/item/${itemId}`);
+      toast.promise(response, {
+        loading: 'Removing item from cart',
+        success: (resolvedPromise) => {
+          return resolvedPromise?.data?.message;
+        },
+        error: (error) => {
+          return error?.response?.data?.message || error?.message;
+        }
+      });
+      const apiResponse = await response;
+      return apiResponse;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error?.response?.data || error?.message);
+    }
   }
-});
+);
 
 const cartSlice = createSlice({
   name: 'cart',

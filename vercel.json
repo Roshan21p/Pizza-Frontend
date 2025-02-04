@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/payment-verification", "destination": "/" },
-    { "source": "/auth/reset-password/:resetToken", "destination": "/" }
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
   ]
 }

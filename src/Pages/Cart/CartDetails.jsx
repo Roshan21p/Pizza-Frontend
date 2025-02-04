@@ -14,7 +14,6 @@ function CartDetails() {
   const dispatch = useDispatch();
 
   async function fetchCartDetails() {
-    console.log('fetching cart details');
     await dispatch(getCartDetails());
   }
 
@@ -35,7 +34,6 @@ function CartDetails() {
   }
 
   useEffect(() => {
-    console.log('re-rendering');
     fetchCartDetails();
   }, []);
 

@@ -8,8 +8,6 @@ function Profile() {
   const userData = useSelector((state) => state?.auth?.data);
   const { flat, area, landmark, pincode, city, state } = userData?.address || {};
 
-  console.log(userData);
-
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-r from-amber-50 to-orange-300 px-4 py-6 md:px-8">

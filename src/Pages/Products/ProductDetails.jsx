@@ -18,7 +18,6 @@ function ProductDetails() {
 
   async function fetchProductDetails() {
     const details = await dispatch(getProductDetails(productId));
-    console.log(details);
     setProductDetails(details?.payload?.data?.data);
   }
   async function handleCart() {

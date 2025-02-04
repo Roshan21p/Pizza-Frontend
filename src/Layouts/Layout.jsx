@@ -132,7 +132,7 @@ function Layout({ children }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-center sm:flex-row sm:pl-[100px]  gap-4 mt-2 sm:mt-[-45px]">
+        <div className="flex items-center justify-center sm:flex-row sm:pl-[100px] lg:pl-[5px]  gap-4 mt-2 sm:mt-[-45px]">
           <Link to="/menu" className="hover:text-[#FF9110]">
             Menu
           </Link>

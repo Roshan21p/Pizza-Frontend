@@ -9,14 +9,10 @@ function Sidebar() {
   };
   useEffect(() => {
     if (isOpen) {
-      console.log('hidden');
-
       document.body.style.overflow = 'hidden';
     }
     // Cleanup when the component unmounts
     return () => {
-      console.log('hidden-auto');
-
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);

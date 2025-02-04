@@ -33,8 +33,8 @@ function OrderDetails() {
     if (response?.payload?.data?.success) {
       setNewStatus('');
       fetchOrderDetails();
-    } 
-  };
+    }
+  }
 
   useEffect(() => {
     fetchOrderDetails();
@@ -114,8 +114,8 @@ function OrderDetails() {
               </label>
               <select
                 id="status"
-                 value={newStatus}
-                 onChange={(e) => setNewStatus(e.target.value)}
+                value={newStatus}
+                onChange={(e) => setNewStatus(e.target.value)}
                 className="mt-4 py-2 px-4 block rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               >
                 <option value="" disabled>
@@ -125,11 +125,11 @@ function OrderDetails() {
                 <option value="PROCESSING">Processing</option>
                 <option value="DELIVERED">Delivered</option>
                 <option value="CANCELLED">Cancelled</option>
-                <option value='OUT_FOR_DELIVERY'> Out_For_Delivery</option>
+                <option value="OUT_FOR_DELIVERY"> Out_For_Delivery</option>
               </select>
 
               <button
-                 onClick={handleStatusChange}
+                onClick={handleStatusChange}
                 className="bg-blue-500 mt-4 text-white px-4 py-2 rounded hover:bg-blue-600"
               >
                 Update Status
