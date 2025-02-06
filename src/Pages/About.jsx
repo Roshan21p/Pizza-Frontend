@@ -39,8 +39,8 @@ function About() {
 
         {/* About Section */}
         <div className="flex flex-col m-5 md:px-8 md:w-1/3 text-black text-left">
-          <h1 className="text-4xl">About</h1>
-          <p className="md:mt-8 text-justify">
+          <h1 className="text-4xl text-[#FF9110]">About</h1>
+          <p className="md:mt-8 mt-2 text-justify">
             At Pizza App, we are passionate about crafting exceptional pizzas that bring joy to
             every bite. Our journey began with a commitment to using the freshest, high-quality
             ingredients, combined with authentic recipes passed down through generations. Whether

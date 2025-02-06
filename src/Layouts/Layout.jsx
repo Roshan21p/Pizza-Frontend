@@ -33,7 +33,7 @@ function Layout({ children }) {
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
-
+  
   useEffect(() => {
     if (isLoggedIn) fetchCartDetails();
   }, []);

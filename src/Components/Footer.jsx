@@ -5,7 +5,7 @@ function Footer() {
     <footer className="text-gray-600 body-font min-h-[10vh] ">
       <div className="bg-gradient-to-r from-amber-50 to-orange-300">
         <div className="container flex flex-col flex-wrap px-5 py-10 mx-auto sm:flex-row">
-          <p className="text-xl text-center text-gray-500 sm:text-left">
+          <p className="text-center text-gray-500 sm:text-left">
             Copyright &copy; {year} Pizzify. All right reserved.
             <a
               href="https://www.linkedin.com/in/roshan-prajapati-960100308"

@@ -10,12 +10,11 @@ const initialState = {
 
 export const createCheckoutSession = createAsyncThunk(
   'stripe/createCheckoutSession',
-  async ({ address, paymentMethod }) => {
+  async ({ address, paymentMethod },{ rejectWithValue }  ) => {    
     try {
       const response = axiosInstance.post(
         '/payments/create-checkout',
         { paymentMethod, address },
-        { rejectWithValue }
       );
       toast.promise(response, {
         loading: 'Creating your payment session id...',

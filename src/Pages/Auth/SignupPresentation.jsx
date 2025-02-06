@@ -15,7 +15,7 @@ function SignUpPresentation({ handleUserInput, handleFormSubmit, signUpState }) 
             className="flex flex-col w-full p-8 mt-0 bg-gray-100 rounded-lg lg:w-1/3 md:w-1/2 md:ml-auto md:mt-0 "
             noValidate
           >
-            <h2 className="mb-5 text-lg font-medium text-gray-900 title-font">Sign up</h2>
+            <h2 className="mb-5 text-2xl sm:text-3xl text-center font-medium text-[#FF9110] title-font">Sign up</h2>
 
             <div className="relative mb-4">
               <label htmlFor="firstName" className="text-sm leading-7 text-gray-600">
