@@ -47,9 +47,9 @@ export const verifyPayment = createAsyncThunk(
 
 export const fetchAllPayments = createAsyncThunk(
   'stripe/fetchAllPayments',
-  async (__, { rejectWithValue }) => {
+  async ({startDate, endDate}, { rejectWithValue }) => {
     try {
-      const response = axiosInstance.get('payments/all-payments');
+      const response = axiosInstance.get(`payments/all-payments?startDate=${startDate}&endDate=${endDate}`);
       toast.promise(response, {
         loading: 'Fetching all payments...',
         success: (resolvedPromise) => {

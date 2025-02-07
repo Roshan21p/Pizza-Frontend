@@ -39,9 +39,9 @@ function CartDetails() {
 
   return (
     <Layout>
-      <section className="py-8 antialiased px-4 md:py-16 min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
-        <div className="px-4 mx-auto 2xl:px-0">
-          <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">Cart details</h2>
+      <section className="py-8 antialiased px-2 md:py-16 min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
+        <div className="px-2 mx-auto 2xl:px-0">
+          <h2 className="text-xl font-bold text-[#FF9110] sm:text-2xl">Cart details</h2>
           {cartsData?.items?.length > 0 ? (
             <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start">
               <div className="flex-none w-full mx-auto lg:max-w-2xl xl:max-w-4xl">
@@ -49,11 +49,11 @@ function CartDetails() {
                   {cartsData?.items?.map((item) => (
                     <div
                       key={item._id}
-                      className="p-4 text-gray-900 rounded-lg shadow-lg bg-white md:p-6 border"
+                      className="p-4 text-gray-900 rounded-lg shadow-lg bg-white sm:p-6 border"
                     >
-                      <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                      <div className="space-y-4 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:space-y-0">
                         <img
-                          className="hidden w-ful h-56 dark:block rounded-md"
+                          className=" w-full sm:w-56 sm:h-56 dark:block rounded-md"
                           src={item?.product?.productImage?.secure_url}
                           alt={item?.product?.productName}
                         />
@@ -101,13 +101,13 @@ function CartDetails() {
                 </div>
               </div>
               <div className="flex-1 max-w-4xl mx-auto mt-6 space-y-6 lg:mt-0 lg:w-full">
-                <div className="p-4 space-y-4 text-gray-800 border rounded-lg shadow-lg bg-white sm:p-6">
+                <div className="pl-2 space-y-4 text-gray-800 border rounded-lg shadow-lg bg-white sm:p-6">
                   <p className="text-xl font-semibold text-gray-900">Order summary</p>
                   <div className="space-y-2">
                     {cartsData?.items?.map((item) => (
                       <div
                         key={item?.product?._id}
-                        className="grid grid-cols-3 gap-y-2 space-x-8 text-base font-medium text-gray-900"
+                        className="grid grid-cols-3 gap-y-2 space-x-10 text-base font-medium text-gray-900"
                       >
                         <p>{item?.product?.productName}</p>
                         <p className="sm:text-center">
@@ -119,10 +119,11 @@ function CartDetails() {
                       </div>
                     ))}
                   </div>
-                  <dl className="pt-4 border-t border-black">
-                    <div className="flex justify-between items-center">
+                  <dl className="pt-2 border-t border-black">
+                    <div className="grid grid-cols grid-cols-3 space-x-10">
                       <dt className="text-base font-bold">Total</dt>
-                      <dd className="text-base font-bold">
+                      <dt className='block'>{''}</dt>
+                      <dd className="text-base  sm:pr-0 font-bold  sm:text-right">
                         ₹
                         {cartsData?.items.reduce(
                           (acc, item) => acc + item?.quantity * item?.product?.price,
