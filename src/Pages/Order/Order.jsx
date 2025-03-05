@@ -7,7 +7,7 @@ import { states } from '../../Constants/states';
 
 function Order() {
   const navigate = useNavigate();
-  const { cartsData } = useSelector((state) => state.cart);
+  const { cartsData } = useSelector((state) => state?.cart);
   // const { flat, area, landmark, pincode, city, state } = useSelector((state) => state?.auth?.data?.address);
   const address = useSelector((state) => state?.auth?.data?.address);
 

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import signupImage from '../../assets/Images/signup.svg';
 import Layout from '../../Layouts/Layout';
 
-function SignUpPresentation({ handleUserInput, handleFormSubmit, signUpState }) {
+function SignUpPresentation({ handleUserInput, handleFormSubmit, signUpState,loading }) {
   return (
     <Layout>
       <section className="text-gray-600 body-font ">
@@ -109,6 +109,7 @@ function SignUpPresentation({ handleUserInput, handleFormSubmit, signUpState }) 
             </div>
             <button
               onClick={handleFormSubmit}
+              disabled={loading}
               className="w-full px-8 py-2 text-lg text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
             >
               Create Account

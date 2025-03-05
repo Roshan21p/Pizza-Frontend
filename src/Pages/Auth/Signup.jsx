@@ -10,6 +10,8 @@ import { isEmail, isValidMobNumber, isValidPassword } from '../../Helpers/regexM
 function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
 
   const [signUpState, setSignUpState] = useState({
     firstName: '',
@@ -72,7 +74,11 @@ function Signup() {
       return;
     }
 
+    setLoading(true); // Disable button while request is in progress
+
     const apiResponse = await dispatch(createAccount(signUpState));
+    setLoading(false); // Re-enable button after request completes
+    
     console.log('API Response is ', apiResponse);
     if (apiResponse?.payload?.data?.success) {
       navigate('/auth/login');
@@ -92,6 +98,7 @@ function Signup() {
       handleFormSubmit={handleFormSubmit}
       handleUserInput={handleUserInput}
       signUpState={signUpState}
+      loading={loading}
     />
   );
 }

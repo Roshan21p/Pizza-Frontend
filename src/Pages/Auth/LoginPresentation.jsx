@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../../Layouts/Layout';
 import loginImage from '../../assets/Images/login.svg';
 
-function LoginPresentation({ handleFormSubmit, handleUserInput, loginData }) {
+function LoginPresentation({ handleFormSubmit, handleUserInput, loginData, loading }) {
   return (
     <Layout>
       <section className="text-gray-600 body-font">
@@ -50,9 +50,12 @@ function LoginPresentation({ handleFormSubmit, handleUserInput, loginData }) {
                 className="w-full px-3 py-1 mt-2 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out border border-gray-300 rounded outline-noe focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200"
               />
             </div>
+
+            
             <button
               type="sumbit"
               onClick={handleFormSubmit}
+              disabled={loading}
               className="w-full px-8 py-2 text-lg text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
             >
               Sign In

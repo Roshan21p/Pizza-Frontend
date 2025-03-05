@@ -11,14 +11,14 @@ import { logout } from '../Redux/Slices/AuthSlice';
 function Layout({ children }) {
   const { isLoggedIn, role } = useSelector((state) => state?.auth);
   const userData = useSelector((state) => state?.auth?.data);
-  const { cartsData } = useSelector((state) => state.cart);
+  const { cartsData,fetched } = useSelector((state) => state?.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   async function handleLogout(e) {
     e.preventDefault();
-    await dispatch(logout());
+    await dispatch(logout());    
     navigate('/');
   }
 
@@ -26,7 +26,7 @@ function Layout({ children }) {
     const response = await dispatch(getCartDetails());
     if (response?.payload?.isUnauthorized) {
       dispatch(logout());
-      navigate('/');
+      navigate('/auth/login');
     }
   }
 
@@ -35,7 +35,7 @@ function Layout({ children }) {
   };
   
   useEffect(() => {
-    if (isLoggedIn) fetchCartDetails();
+    if (isLoggedIn && !fetched) fetchCartDetails();
   }, []);
 
   return (

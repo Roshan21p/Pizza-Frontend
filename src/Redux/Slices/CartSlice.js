@@ -3,7 +3,8 @@ import axiosInstance from '../../Helpers/axiosinstance';
 import toast from 'react-hot-toast';
 
 const initialState = {
-  cartsData: null
+  cartsData: null,
+  fetched: false,
 };
 
 export const addProductToCart = createAsyncThunk(
@@ -105,6 +106,7 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCartDetails.fulfilled, (state, action) => {
       state.cartsData = action?.payload?.data?.data;
+      state.fetched = true;
     });
   }
 });

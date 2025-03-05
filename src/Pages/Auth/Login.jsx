@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
 
   const [loginData, setLoginData] = useState({
     email: '',
@@ -31,8 +33,11 @@ function Login() {
       return;
     }
 
+    setLoading(true); // Disable button while request is in progress
+
     const apiResponse = await dispatch(login(loginData));
-    console.log('API Response of Login ', apiResponse);
+    setLoading(false); // Re-enable button after request completes
+
     if (apiResponse?.payload?.data?.success) {
       navigate('/');
       setLoginData({
@@ -43,10 +48,12 @@ function Login() {
     }
   }
   return (
+    
     <LoginPresentation
       handleFormSubmit={handleFormSubmit}
       handleUserInput={handleUserInput}
       loginData={loginData}
+      loading={loading}
     />
   );
 }
