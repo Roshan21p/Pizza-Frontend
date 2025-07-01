@@ -21,6 +21,7 @@ The admin dashboard enables efficient management of products, users, and orders.
 - View order history, detailed order information and download invoice
 - Order status updates via admin dashboard (manual)
 - Monthly and yearly sales amount overview (admin)
+- Stripe for payment integration
 - Toast notifications for feedback (e.g., login, logout, error)
 - Fully responsive design for all screen sizes
 
@@ -33,7 +34,6 @@ The admin dashboard enables efficient management of products, users, and orders.
 - **Redux Toolkit** for global state management
 - **Axios** for API communication
 - **React Router DOM** for navigation
-- **Stripe (via backend)** for payment integration
 - **JWT** (handled via backend) for secure authentication
 
 ---
@@ -103,12 +103,12 @@ PORT=3000
 FRONTEND_URL=http://localhost:5173
 
 # Add your actual credentials below:
-DB_URL=DB_URL=mongodb+srv://<your-mongo-credentials>.oqsvz.mongodb.net/lms?retryWrites=true&w=majority&appName=Cluster0
+DB_URL=mongodb+srv://<your-mongo-credentials>.oqsvz.mongodb.net/pizzify?retryWrites=true&w=majority&appName=Cluster0
 
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRY= expiry_time
 
-COOKIE_SECURE=false   // for production keep true
+COOKIE_SECURE=false   # true in production
 
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_api_key
