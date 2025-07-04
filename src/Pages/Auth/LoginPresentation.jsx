@@ -15,7 +15,10 @@ function LoginPresentation({ handleFormSubmit, handleUserInput, loginData, loadi
             noValidate
             className="flex flex-col w-full p-8 mt-10 bg-gray-100 rounded-lg lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0 "
           >
-            <h2 className="mb-5 text-2xl sm:text-3xl text-center font-medium text-[#FF9110] title-font"> Login </h2>
+            <h2 className="mb-5 text-2xl sm:text-3xl text-center font-medium text-[#FF9110] title-font">
+              {' '}
+              Login{' '}
+            </h2>
 
             <div className="relative mb-4">
               <label htmlFor="email" className="text-sm leading-7 text-gray-600">
@@ -51,7 +54,6 @@ function LoginPresentation({ handleFormSubmit, handleUserInput, loginData, loadi
               />
             </div>
 
-            
             <button
               type="sumbit"
               onClick={handleFormSubmit}

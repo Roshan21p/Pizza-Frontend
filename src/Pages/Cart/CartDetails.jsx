@@ -122,7 +122,7 @@ function CartDetails() {
                   <dl className="pt-2 border-t border-black">
                     <div className="grid grid-cols grid-cols-3 space-x-10">
                       <dt className="text-base font-bold">Total</dt>
-                      <dt className='block'>{''}</dt>
+                      <dt className="block">{''}</dt>
                       <dd className="text-base  sm:pr-0 font-bold  sm:text-right">
                         ₹
                         {cartsData?.items.reduce(

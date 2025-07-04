@@ -12,7 +12,6 @@ function Signup() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-
   const [signUpState, setSignUpState] = useState({
     firstName: '',
     lastName: '',
@@ -78,7 +77,7 @@ function Signup() {
 
     const apiResponse = await dispatch(createAccount(signUpState));
     setLoading(false); // Re-enable button after request completes
-    
+
     console.log('API Response is ', apiResponse);
     if (apiResponse?.payload?.data?.success) {
       navigate('/auth/login');

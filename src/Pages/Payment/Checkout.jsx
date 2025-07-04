@@ -22,7 +22,6 @@ function Checkout() {
   }, [orderDetails, totalPrice]);
 
   async function handlePayment() {
-    
     // Create a checkout session via the backend
     try {
       const response = await dispatch(

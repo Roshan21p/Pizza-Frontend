@@ -11,14 +11,14 @@ import { logout } from '../Redux/Slices/AuthSlice';
 function Layout({ children }) {
   const { isLoggedIn, role } = useSelector((state) => state?.auth);
   const userData = useSelector((state) => state?.auth?.data);
-  const { cartsData,fetched } = useSelector((state) => state?.cart);
+  const { cartsData, fetched } = useSelector((state) => state?.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   async function handleLogout(e) {
     e.preventDefault();
-    await dispatch(logout());    
+    await dispatch(logout());
     navigate('/');
   }
 
@@ -33,7 +33,7 @@ function Layout({ children }) {
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
-  
+
   useEffect(() => {
     if (isLoggedIn && !fetched) fetchCartDetails();
   }, []);

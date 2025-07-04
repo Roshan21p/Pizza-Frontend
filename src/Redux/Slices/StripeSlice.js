@@ -10,12 +10,9 @@ const initialState = {
 
 export const createCheckoutSession = createAsyncThunk(
   'stripe/createCheckoutSession',
-  async ({ address, paymentMethod },{ rejectWithValue }  ) => {    
+  async ({ address, paymentMethod }, { rejectWithValue }) => {
     try {
-      const response = axiosInstance.post(
-        '/payments/create-checkout',
-        { paymentMethod, address },
-      );
+      const response = axiosInstance.post('/payments/create-checkout', { paymentMethod, address });
       toast.promise(response, {
         loading: 'Creating your payment session id...',
         success: (resolvedPromise) => {
@@ -47,9 +44,11 @@ export const verifyPayment = createAsyncThunk(
 
 export const fetchAllPayments = createAsyncThunk(
   'stripe/fetchAllPayments',
-  async ({startDate, endDate}, { rejectWithValue }) => {
+  async ({ startDate, endDate }, { rejectWithValue }) => {
     try {
-      const response = axiosInstance.get(`payments/all-payments?startDate=${startDate}&endDate=${endDate}`);
+      const response = axiosInstance.get(
+        `payments/all-payments?startDate=${startDate}&endDate=${endDate}`
+      );
       toast.promise(response, {
         loading: 'Fetching all payments...',
         success: (resolvedPromise) => {

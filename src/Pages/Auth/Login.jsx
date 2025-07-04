@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -48,7 +47,6 @@ function Login() {
     }
   }
   return (
-    
     <LoginPresentation
       handleFormSubmit={handleFormSubmit}
       handleUserInput={handleUserInput}

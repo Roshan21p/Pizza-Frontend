@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 
 const initialState = {
   cartsData: null,
-  fetched: false,
+  fetched: false
 };
 
 export const addProductToCart = createAsyncThunk(
