@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 function CartDetails() {
   const { cartsData } = useSelector((state) => state.cart);
 
+
   const dispatch = useDispatch();
 
   async function fetchCartDetails() {
@@ -46,9 +47,9 @@ function CartDetails() {
             <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start">
               <div className="flex-none w-full mx-auto lg:max-w-2xl xl:max-w-4xl">
                 <div className="space-y-6">
-                  {cartsData?.items?.map((item) => (
+                  {cartsData?.items?.map((item, index) => (
                     <div
-                      key={item._id}
+                      key={item?.product?._id || index}
                       className="p-4 text-gray-900 rounded-lg shadow-lg bg-white sm:p-6 border"
                     >
                       <div className="space-y-4 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:space-y-0">
@@ -59,7 +60,7 @@ function CartDetails() {
                         />
                         <div className="flex-1 w-full  min-w-0 md:order-2 md:max-w-md">
                           <p className="text-base font-medium mb-2 text-gray-900 underline">
-                            <Link to={`/product/${item?.product._id}`}>
+                            <Link to={`/product/${item?.product?._id}`}>
                               {item?.product?.productName}
                             </Link>
                           </p>
@@ -72,7 +73,7 @@ function CartDetails() {
                           </p>
                           <p className="mb-2">₹{item?.product?.price}</p>
                           <div className="flex items-center gap-4">
-                            {item._id && (
+                            {item?._id && (
                               <div className="flex items-center border border-gray-500 rounded-md overflow-hidden">
                                 <button
                                   type="button"
@@ -104,9 +105,9 @@ function CartDetails() {
                 <div className="pl-2 space-y-4 text-gray-800 border rounded-lg shadow-lg bg-white sm:p-6">
                   <p className="text-xl font-semibold text-gray-900">Order summary</p>
                   <div className="space-y-2">
-                    {cartsData?.items?.map((item) => (
+                    {cartsData?.items?.map((item, index) => (
                       <div
-                        key={item?.product?._id}
+                        key={item?.product?._id || index}
                         className="grid grid-cols-3 gap-y-2 space-x-10 text-base font-medium text-gray-900"
                       >
                         <p>{item?.product?.productName}</p>
@@ -126,13 +127,14 @@ function CartDetails() {
                       <dd className="text-base  sm:pr-0 font-bold  sm:text-right">
                         ₹
                         {cartsData?.items.reduce(
-                          (acc, item) => acc + item?.quantity * item?.product?.price,
+                          (acc, item) =>
+                            item?.product ? acc + item?.quantity * item?.product?.price : acc,
                           0
                         )}
                       </dd>
                     </div>
                   </dl>
-                  {cartsData?.items.length > 0 && (
+                  {cartsData?.items?.length > 0 && (
                     <Link
                       to={'/order'}
                       className="flex justify-center w-full py-2 text-white bg-yellow-400 border border-yellow-500 rounded-md hover:bg-yellow-700"

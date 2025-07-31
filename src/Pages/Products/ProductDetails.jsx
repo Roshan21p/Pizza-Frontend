@@ -16,6 +16,7 @@ function ProductDetails() {
   const [productDetails, setProductDetails] = useState({});
   const [isInCart, setIsInCart] = useState(false); // Check if product is in cart
 
+
   async function fetchProductDetails() {
     const details = await dispatch(getProductDetails(productId));
     setProductDetails(details?.payload?.data?.data);
@@ -44,7 +45,7 @@ function ProductDetails() {
   useEffect(() => {
     fetchProductDetails();
     // Check if the product is already in the cart
-    const productInCart = items?.find((item) => item.product._id === productId);
+    const productInCart = items?.find((item) => item?.product?._id === productId);
     setIsInCart(!!productInCart);
   }, [productId]);
 
