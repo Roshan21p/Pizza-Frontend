@@ -41,7 +41,7 @@ function Home() {
           </div>
 
           <div>
-            <img src={PizzaImage} alt="Pizza" width={550} height={550} />
+            <img src={PizzaImage} alt="Pizza" width={550} height={550} loading="eager" />
           </div>
         </section>
 
@@ -49,7 +49,13 @@ function Home() {
         <section className="py-4 mt-6  bg-gradient-to-r from-amber-50 to-orange-300">
           <div className="container flex flex-col md:flex-row">
             <div className="flex flex-col items-center justify-center rounded-lg lg:w-1/2">
-              <img src={CookingImage} width={500} className="rounded-lg" alt="Cooking" />
+              <img
+                src={CookingImage}
+                width={500}
+                className="rounded-lg"
+                alt="Cooking"
+                loading="lazy"
+              />
             </div>
 
             <div className="flex flex-col flex-wrap text-center lg:py-6 lg:w-1/2 lg:pl-12 lg:text-left">
@@ -93,7 +99,7 @@ function Home() {
                 <div className="flex flex-wrap space-y-6 md:space-y-0">
                   <div className="flex flex-col items-center text-center p-4 md:w-1/3">
                     <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 mb-5 bg-yellow-100 rounded-full">
-                      <img src={OrderFood} alt="OrderFood" />
+                      <img src={OrderFood} alt="OrderFood" width={40} height={40} loading="lazy" />
                     </div>
 
                     <div className="flex-grow">
@@ -108,7 +114,7 @@ function Home() {
 
                   <div className="flex flex-col items-center text-center p-4 md:w-1/3">
                     <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 mb-5 bg-yellow-100 rounded-full">
-                      <img src={Pickup} alt="Pickup" />
+                      <img src={Pickup} alt="Pickup" width={50} height={50} loading="lazy" />
                     </div>
 
                     <div className="flex-grow">
@@ -124,7 +130,7 @@ function Home() {
 
                   <div className="flex flex-col items-center text-center p-4 md:w-1/3">
                     <div className="inline-flex items-center justify-center flex-shrink-0 w-20 h-20 mb-5 bg-yellow-100 rounded-full">
-                      <img src={Enjoy} alt="Enjoy" />
+                      <img src={Enjoy} alt="Enjoy" width={45} height={45} loading="lazy" />
                     </div>
 
                     <div className="flex-grow">

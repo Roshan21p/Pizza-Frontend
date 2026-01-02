@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 function CartDetails() {
   const { cartsData } = useSelector((state) => state.cart);
 
-
   const dispatch = useDispatch();
 
   async function fetchCartDetails() {

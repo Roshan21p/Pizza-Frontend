@@ -201,7 +201,10 @@ function EditProfilePresentation({ handleInputChange, handleImageUpload, onFormS
           </Link>
 
           {/* Buttons */}
-          <button className="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded text-lg">
+          <button
+            type="submit"
+            className="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded text-lg"
+          >
             Update Profile
           </button>
         </form>

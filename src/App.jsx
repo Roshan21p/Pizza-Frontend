@@ -1,35 +1,39 @@
+import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import Signup from './Pages/Auth/Signup';
-import Login from './Pages/Auth/Login';
-import NotFound from './Pages/NotFound';
-import Denied from './Pages/Denied';
-import ProductDetails from './Pages/Products/ProductDetails';
-import CartDetails from './Pages/Cart/CartDetails';
-import Order from './Pages/Order/Order';
-import OrderSuccess from './Pages/Order/OrderSuccess';
-import RequireAuth from './Components/Auth/RequireAuth';
-import About from './Pages/About';
-import Services from './Pages/Services';
-import Menu from './Pages/Menu';
-import Contact from './Pages/Contact';
-import Profile from './Pages/User/Profile';
-import EditProfile from './Pages/User/EditProfile';
-import AddProduct from './Pages/Admin/AddProduct';
-import ForgotPassword from './Pages/Password/ForgotPassword';
-import ResetPasssword from './Pages/Password/ResetPassword';
-import Checkout from './Pages/Payment/Checkout';
-import PaymentVerification from './Pages/Payment/PaymentVerification';
-import OrderFailure from './Pages/Order/OrderFailure';
-import MyOrders from './Pages/Order/MyOrders';
-import OrderDetails from './Pages/Order/OrderDetails';
-import AdminDashboard from './Pages/Admin/AdminDashboard';
-import AllOrders from './Pages/Admin/AllOrders';
-import AllProducts from './Pages/Admin/AllProducts';
+import Loader from './Components/Loader';
+
+// Lazy load components
+const Home = React.lazy(() => import('./Pages/Home'));
+const Signup = React.lazy(() => import('./Pages/Auth/Signup'));
+const Login = React.lazy(() => import('./Pages/Auth/Login'));
+const NotFound = React.lazy(() => import('./Pages/NotFound'));
+const Denied = React.lazy(() => import('./Pages/Denied'));
+const ProductDetails = React.lazy(() => import('./Pages/Products/ProductDetails'));
+const CartDetails = React.lazy(() => import('./Pages/Cart/CartDetails'));
+const Order = React.lazy(() => import('./Pages/Order/Order'));
+const OrderSuccess = React.lazy(() => import('./Pages/Order/OrderSuccess'));
+const RequireAuth = React.lazy(() => import('./Components/Auth/RequireAuth'));
+const About = React.lazy(() => import('./Pages/About'));
+const Services = React.lazy(() => import('./Pages/Services'));
+const Menu = React.lazy(() => import('./Pages/Menu'));
+const Contact = React.lazy(() => import('./Pages/Contact'));
+const Profile = React.lazy(() => import('./Pages/User/Profile'));
+const EditProfile = React.lazy(() => import('./Pages/User/EditProfile'));
+const AddProduct = React.lazy(() => import('./Pages/Admin/AddProduct'));
+const ForgotPassword = React.lazy(() => import('./Pages/Password/ForgotPassword'));
+const ResetPasssword = React.lazy(() => import('./Pages/Password/ResetPassword'));
+const Checkout = React.lazy(() => import('./Pages/Payment/Checkout'));
+const PaymentVerification = React.lazy(() => import('./Pages/Payment/PaymentVerification'));
+const OrderFailure = React.lazy(() => import('./Pages/Order/OrderFailure'));
+const MyOrders = React.lazy(() => import('./Pages/Order/MyOrders'));
+const OrderDetails = React.lazy(() => import('./Pages/Order/OrderDetails'));
+const AdminDashboard = React.lazy(() => import('./Pages/Admin/AdminDashboard'));
+const AllOrders = React.lazy(() => import('./Pages/Admin/AllOrders'));
+const AllProducts = React.lazy(() => import('./Pages/Admin/AllProducts'));
 
 function App() {
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -67,7 +71,7 @@ function App() {
 
         <Route path="/*" element={<NotFound />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
 

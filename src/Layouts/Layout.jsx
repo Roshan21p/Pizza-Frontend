@@ -63,6 +63,9 @@ function Layout({ children }) {
                     alt="User profile image"
                     className="rounded-full w-10 h-10 cursor-pointer border-2 border-[#FF9110] "
                     onClick={toggleDropdown}
+                    loading="lazy"
+                    width="40"
+                    height="40"
                   />
                 ) : (
                   <BsPersonCircle
@@ -122,7 +125,14 @@ function Layout({ children }) {
             {isLoggedIn && (
               <Link to="/cart">
                 <div>
-                  <img src={CartIcon} className="w-8 h-8 inline" alt="Cart" />
+                  <img
+                    src={CartIcon}
+                    className="w-8 h-8 inline"
+                    alt="Cart"
+                    loading="lazy"
+                    width="32"
+                    height="32"
+                  />
                   <p className="text-black inline sm:pr-[70px] md:pr-[10px] lg:pr-[100px]">
                     {cartsData?.items?.length}
                   </p>

@@ -15,21 +15,24 @@ function ProductDetails() {
   const dispatch = useDispatch();
   const [productDetails, setProductDetails] = useState({});
   const [isInCart, setIsInCart] = useState(false); // Check if product is in cart
-
+  const [cartLoading, setCartLoading] = useState(false);
 
   async function fetchProductDetails() {
     const details = await dispatch(getProductDetails(productId));
     setProductDetails(details?.payload?.data?.data);
   }
   async function handleCart() {
+    setCartLoading(true);
     // Add product to cart
     const response = await dispatch(addProductToCart(productId));
     if (response?.payload?.data?.success) {
       setIsInCart(true);
       dispatch(getCartDetails()); // Fetch cart details and update state
     }
+    setCartLoading(false);
   }
   async function handleRemoveAll() {
+    setCartLoading(true);
     const itemsToRemove = items
       ?.filter((item) => item.product._id === productId)
       .map((item) => item._id);
@@ -40,14 +43,17 @@ function ProductDetails() {
       setIsInCart(false);
       dispatch(getCartDetails()); // Fetch cart details and update state
     }
+    setCartLoading(false);
   }
 
   useEffect(() => {
     fetchProductDetails();
-    // Check if the product is already in the cart
+  }, [productId]);
+
+  useEffect(() => {
     const productInCart = items?.find((item) => item?.product?._id === productId);
     setIsInCart(!!productInCart);
-  }, [productId]);
+  }, [items, productId]);
 
   return (
     <Layout>
@@ -55,7 +61,7 @@ function ProductDetails() {
         <div className="px-5 py-16 mx-auto min-h-[90vh] bg-gradient-to-r from-amber-50 to-orange-300">
           <div className="flex flex-wrap mx-auto lg:w-4/5 ">
             <img
-              alt="ecommerce"
+              alt={productDetails?.productName || 'Product image'}
               className="object-center bg-white w-full rounded lg:w-1/2 lg:h-[70vh] shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
               src={productDetails?.productImage?.secure_url}
             />
@@ -167,13 +173,15 @@ function ProductDetails() {
                 </span>
                 {isInCart ? (
                   <button
+                    disabled={cartLoading}
                     className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600 shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
-                    onClick={() => handleRemoveAll(productId)}
+                    onClick={handleRemoveAll}
                   >
                     Remove from cart
                   </button>
                 ) : (
                   <button
+                    disabled={cartLoading}
                     className="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600 shadow-xl hover:shadow-orange-400 transition duration-300 ease-in-out"
                     onClick={handleCart}
                   >

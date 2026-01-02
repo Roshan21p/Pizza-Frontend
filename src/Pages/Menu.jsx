@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../Layouts/Layout';
 import { Link } from 'react-router-dom';
 import { getAllProducts } from '../Redux/Slices/ProductSlice';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { categories } from '../Constants/categories';
 
 function Menu() {
@@ -17,10 +17,10 @@ function Menu() {
     setSelectedCategory('all');
   }, []);
 
-  const filteredProduct =
-    selectedCategory === 'all'
-      ? productsData
-      : productsData?.filter((item) => item.category === selectedCategory);
+  const filteredProduct = useMemo(() => {
+    if (selectedCategory === 'all') return productsData;
+    return productsData?.filter((item) => item.category === selectedCategory);
+  }, [productsData, selectedCategory]);
 
   return (
     <Layout>
@@ -56,7 +56,10 @@ function Menu() {
                         <Link to={`/product/${item._id}`}>
                           <img
                             src={item?.productImage?.secure_url}
-                            alt="Product"
+                            alt={item?.productName}
+                            loading="lazy"
+                            width="400"
+                            height="300"
                             className="object-center w-full  md:h-48 lg:h-52"
                           />
                           <div className="p-4 h-40 md:h-48">

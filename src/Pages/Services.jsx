@@ -22,13 +22,18 @@ function Services() {
               key={index}
               className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-105"
             >
-              <div className="flex items-center justify-center text-6xl text-orange-500 mt-5">
+              <div
+                className="flex items-center justify-center text-6xl text-orange-500 mt-5"
+                role="img"
+                aria-label={service?.title}
+              >
                 {service.icon}
               </div>
               <div className="p-5">
                 <h2 className="text-xl font-semibold text-orange-600">{service.title}</h2>
                 <p className="mt-3 text-gray-600">{service.description}</p>
                 <button
+                  aria-label={service.buttonText}
                   className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
                   onClick={() => navigate(service.route)}
                 >

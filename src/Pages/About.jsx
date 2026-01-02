@@ -7,6 +7,7 @@ function About() {
         {/* Map Section */}
         <div className="relative m-5 justify-start md:w-2/3">
           <iframe
+            aria-label="Location map of Domino's Pizza - Lower Parel, Mumbai"
             className="rounded-md w-full"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60348.867992528474!2d72.79244934381164!3d19.028345526534526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8c8b13eb51%3A0x52f62711ad301315!2sDomino&#39;s%20Pizza%20-%20Lower%20Parel!5e0!3m2!1sen!2sin!4v1734786256613!5m2!1sen!2sin"
             height="490"
