@@ -1,6 +1,6 @@
 import IconArrowRight from '../Components/Icons/ArrowRight';
-import PizzaImage from '../assets/Images/pizza2.png';
-import CookingImage from '../assets/Images/cooking1.png';
+import PizzaImage from '../assets/Images/pizza2.webp';
+import CookingImage from '../assets/Images/cooking1.webp';
 import OrderFood from '../assets/Images/orderFood.png';
 import Pickup from '../assets/Images/pickup.png';
 import Enjoy from '../assets/Images/enjoy.png';
@@ -41,7 +41,7 @@ function Home() {
           </div>
 
           <div>
-            <img src={PizzaImage} alt="Pizza" width={550} height={550} loading="eager" />
+            <img src={PizzaImage} alt="Pizza" width={550} height={550} />
           </div>
         </section>
 

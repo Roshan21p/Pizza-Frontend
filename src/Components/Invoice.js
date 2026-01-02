@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import logo from '../assets/Images/Pizza_logo.png';
+import logo from '../assets/Images/Pizza_logo.webp';
 import { formatDate } from '../Helpers/formatDate';
 
 function generateInvoice(orderDetails, userDetails) {

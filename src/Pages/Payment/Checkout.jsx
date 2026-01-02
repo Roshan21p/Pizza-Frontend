@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import Layout from '../../Layouts/Layout';
 import toast from 'react-hot-toast';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createCheckoutSession } from '../../Redux/Slices/StripeSlice';
 import { useDispatch } from 'react-redux';
 
@@ -9,6 +9,8 @@ function Checkout() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
 
   // Extract order details and total price from the state
   const { orderDetails, totalPrice } = location.state || {};
@@ -24,6 +26,7 @@ function Checkout() {
   async function handlePayment() {
     // Create a checkout session via the backend
     try {
+      setLoading(true);
       const response = await dispatch(
         createCheckoutSession({
           address: orderDetails.address,
@@ -45,6 +48,8 @@ function Checkout() {
       }
     } catch (error) {
       toast.error('Payment session creation failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -91,9 +96,10 @@ function Checkout() {
             <div className="flex justify-center">
               <button
                 onClick={handlePayment}
-                className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 rounded text-lg"
+                disabled={loading}
+                className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-700 disabled:opacity-60 rounded text-lg"
               >
-                Proceed to Payment
+                {loading ? 'Redirecting to Payment...' : 'Proceed to Payment'}
               </button>
             </div>
           </div>

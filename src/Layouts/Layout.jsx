@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Pizzalogo from '../assets/Images/Pizza_logo.png';
+import Pizzalogo from '../assets/Images/Pizza_logo.webp';
 import Footer from '../Components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import CartIcon from '../assets/Images/cart.svg';
